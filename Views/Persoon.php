@@ -46,11 +46,11 @@ try {
 
 
 <div class="container-fluid">
-		<div class="col-md-2 " style="margin-bottom: 10px; padding-left: 0px;">
-			<img id='myImg' class="img-home" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='209' />
+		<div class="col-md-3 " style="margin-bottom: 10px; padding-left: 0px;">
+			<img id='myImg' class="img-home borders" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='250' />
 		</div>
-		<div class="col-md-10 bio-view" style="background-color:#5f4c4c">
-			<b style="color:#7D6E6E;"><?php echo $profile[4]; ?></b>
+		<div class="col-md-9 bio-view borders" style="margin-top: 5px;background-color: #d4b6b6;">
+			<b  style="color:#7D6E6E; "><?php echo $profile[4]; ?></b>
 
 		</div>
 		
@@ -59,23 +59,54 @@ try {
  <hr> 
 
 <div class="container-fluid">
-		<?php while ($row = $test->fetch_assoc()) { ?>
-			<div class=' col-md-2  div-home '>
-				<img class ="img-responsive img-home img-style" id="myImg"  alt="<?php echo $row['photo_description'] ?>"  src="<?php echo $row['photo_d'];?>">		
+	<div class="col-md-12 ">
+		<?php
+			$get_p = new Upload();
+			$fotos = $get_p->show_foto();
+			$id= 0;
+			while($row = $test->fetch_assoc()) {
+ 			 $id++;
+		?>        
+			<div class=' col-md-3  div-home '>
+				<img class ="img-responsive img-home img-style borders"    
+					 alt="<?php echo $row['photo_description'] ?>"  
+					 src="<?php echo $row['photo_d'];?>" 
+					 href="#my_modal" 
+					 data-toggle="modal" 
+					 data-route-id="<?php echo $row['photo_d'];?>" 
+					 data-description-id="<?php echo $row['photo_description'];?>"
+				>		
 			</div>
-		<?php } ?>
+			<?php } ?>
+		
+	</div>
 </div>
 
- <div id="myModal" class="modal"><span class="close">&times;</span><a href="" style="color: black">
-		<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-		Go back
-	</a>
-	<div class="col-md-12" style="height: 80%;"> 
-		<div class="col-md-12"> </div>
-		<div class="col-md-7" style="height: 100%;"><img class="modal-content" id="img01"> </div>
-		<div class="col-md-4 col-md-offset1" style="height: 100%;"><p id="caption" style="background-color: black; width:100%; text-align:left;  height: 85%;padding-left: 12px;padding-right: 12px;"></p> </div>
-	</div> 
-</div>
 
+
+<div class=" modal" id="my_modal">
+	<div class="modal-dialog" style="width:80%;">
+
+		<div class="container-fluid modal-content model-background borders">
+			<div class="modal-header">
+				<button class="close" type="hidden"></button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
+					<span aria-hidden="true" style="color:black;">&times;</span>
+				</button>
+				<h4 class="modal-title">Modal header</h4>
+			</div>
+				<div class="col-md-12 "><div class=' col-md-6  div-home-model padding-t-b-1'>
+						<img id="myImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
+					</div>
+					<div class="col-md-6 padding-t-b-1" id="Description">
+				       <span></span>
+					</div>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
