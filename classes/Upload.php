@@ -105,7 +105,7 @@ public function show_foto() {
 
 		// } 
 
-}
+} 
 
 
 public function random_num() {

@@ -1,3 +1,5 @@
+<!-- <h1>Home</h1> -->
+
 
 <?php
 	session_start();
@@ -15,15 +17,6 @@
 	} catch (Exception $e) {
 	    echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
-
-	// $likeCounter = new LikeCounter();
-
-	// if (isset($_POST['insertLike'])) {
-	// 	$insertLike = trim($_POST['insertLike']);
-	// 	$getPhoto_id = trim($_POST['getPhoto_id']);
-
-	// 	$likeCounter->insertLike($getPhoto_id, $insertLike);
-	// }
 
 ?>
 
@@ -51,11 +44,18 @@
 			while($row = $fotos->fetch_assoc()) {
  			 $id++;
 ?>        
-			<div class=' col-md-3  div-home '>
-				<img class ="img-responsive img-home img-style" id="myImg<?php echo $id;?>"  alt="<?php echo $row['photo_description']; ?>"  src="<?php echo $row['photo_d'];?>">
-						<input type="hidden" id="hiddenLike" value="<?php echo $row['like_counter']; ?>">
+			<div class=' col-md-2  div-home '>
+				<img class ="img-responsive img-home img-style borders"    
+					 alt="<?php echo $row['photo_description'] ?>"  
+					 src="<?php echo $row['photo_d'];?>" 
+					 href="#my_modal" 
+					 data-toggle="modal" 
+					 data-route-id="<?php echo $row['photo_d'];?>" 
+					 data-description-id="<?php echo $row['photo_description'];?>"
+				>		
+				<input type="hidden" id="hiddenLike" value="<?php echo $row['like_counter']; ?>">
 						<input type="hidden" name="getPhoto_id" id="getPhoto_id">
-						<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
+						<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button> 
 			</div>
 			<?php } ?>
 		
@@ -67,53 +67,29 @@
 <!-- <?php //echo $row['like_counter']; ?> -->
 
 <p id="getAllp"></p>
-<p id="getAllp2"></p>
+<p id="getAllp2"></p> 
 
-<!-- 
-
-onclick="GetInput(this);"
-<img id="myImg" src="uploads\upload-empty.png" alt="your image" style="width: 100%;" height="209" /> -->
-<!-- The Modal -->
-  <div id="myModal" class="modal">
-  	<a href="" style="color: black">
-		<span class="glyphicon glyphicon-remove-circle close" aria-hidden="true"></span>
-		Go back
-	</a>
-	<div class="col-md-12" style="height: 80%;"> 
-		<div class="col-md-12"> </div>
-		<div class="col-md-7" style="height: 100%;"><img class="modal-content" id="img01"> </div>
-		<div class="col-md-4 col-md-offset1" style="height: 100%;">
-			<p id="caption" style="background-color: black; width:100%; text-align:left;  height: 85%;padding-left: 12px;padding-right: 12px;">
-			</p>
+<div class=" modal" id="my_modal">
+	<div class="modal-dialog" style="width:80%;">
+		<div class="container-fluid modal-content model-background borders">
+			<div class="modal-header">
+				<button class="close" type="hidden"></button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
+					<span aria-hidden="true" style="color:black;">&times;</span>
+				</button>
+				<h4 class="modal-title">Modal header</h4>
+			</div>
+				<div class="col-md-12 "><div class=' col-md-6  div-home-model padding-t-b-1'>
+						<img id="myImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
+					</div>
+					<div class="col-md-6 padding-t-b-1" id="Description">
+				       <span></span>
+					</div>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
 		</div>
-	</div> 
+	</div>
 </div>
 
-<!-- <?php
-	// header("Content-Type: application/json; charset=UTF-8");
-	// $obj = json_decode($_POST["x"], false);
-
-	// $conn = new mysqli("localhost", "root", "Lollig1", "mvc");
-	// $result = $conn->query("UPDATE ".$obj->table."
-							// SET 	like_counter = ".$obj->row." + 1
-							// LIMIT ".$obj->limit);
-	// $outp = array();
-	// $outp = $result->fetch_all(MYSQLI_ASSOC);
-
-	// echo json_encode($outp);
-	// WHERE   id = ".$obj->row2."
-?>
-
-<?php
-	//header("Content-Type: application/json; charset=UTF-8");
-	//$obj = json_decode($_GET["x"], false);
-
-	//$conn = new mysqli("localhost", "root", "Lollig1", "mvc");
-	//$result = $conn->query("SELECT like_counter FROM ".$obj->table." LIMIT ".$obj->limit);
-	//$outp = array();
-	//$outp = $result->fetch_all(MYSQLI_ASSOC);
-
-	//echo json_encode($outp);
-?>
-
--->
