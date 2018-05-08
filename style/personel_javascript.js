@@ -98,7 +98,7 @@ function setGetLike(element) {
 
 //het updaten van de like counter in de upload_images table
 
-obj = { "table":"upload_images", "row":"like_counter", "row2":getPhotoId, "limit":10 };
+obj = { "table":"upload_images", "row":getLike, "row2":getPhotoId, "limit":10 };
 dbParam = JSON.stringify(obj);
 xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
