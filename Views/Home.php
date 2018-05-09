@@ -72,7 +72,7 @@
 
 				<input type="hidden" id="hiddenLike2" value="<?php echo $row['like_counter']; ?>">
 				<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
-				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button> 
+				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button> 
 
 				<!-- <?php
 
@@ -101,11 +101,14 @@
 </div>
 
 <input type="hidden" id="hiddenInput" value="<?php echo $_SESSION['user_id']; ?>">
+<input type="hidden" id="hiddenInput2" value="<?php echo $_SESSION['user_id']; ?>">
 
 <!-- <?php //echo $row['like_counter']; ?> -->
 
 <p id="getAllp"></p>
 <p id="getAllp2"></p> 
+<p id="getAllp3"></p>
+<p id="getAllp4"></p> 
 
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
