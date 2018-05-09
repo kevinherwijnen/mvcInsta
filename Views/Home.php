@@ -20,12 +20,6 @@
 
 	$LikeCounter = new LikeCounter();
 
-	$test20 = $LikeCounter->getLikeAmount($_SESSION['user_id']);
-
-	while ($rrow = $test20->fetch_row()) {
-		echo $rrow[0];
-	}
-
 ?>
 
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
@@ -36,8 +30,6 @@
 					Herrie
 				</p>
 			</li>
-			
-
 		</ul>
 	</div>
 </nav>
@@ -51,6 +43,18 @@
 			$id= 0;
 			while($row = $fotos->fetch_assoc()) {
  			 $id++;
+
+ 			 $LikeCounter2 = $LikeCounter->getLikeAmount($row['id']);
+
+ 			 while($rrow = $LikeCounter2->fetch_assoc()) {
+ 			 	if ($rrow['user_id'] == $_SESSION['user_id']) {
+ 			 		echo "hallo";
+ 			 	} else {
+ 			 		echo "not hallo";
+ 			 	}
+ 			 }
+
+ 			 // $test20 = $LikeCounter->getLikeAmount($_SESSION['user_id'], $row['id']);
 ?>        
 			<div class=' col-md-2  div-home '>
 				<img class ="img-responsive img-home img-style borders"    
@@ -69,6 +73,26 @@
 				<input type="hidden" id="hiddenLike2" value="<?php echo $row['like_counter']; ?>">
 				<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
 				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button> 
+
+				<!-- <?php
+
+						//while ($rrow = $test20->fetch_assoc()) {
+						//	if ($rrow['user_id'] == $_SESSION['user_id']) {
+						//		?>
+								<input type="hidden" id="hiddenLike2" value="<?php //echo $row['like_counter']; ?>">
+								<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
+								<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php// echo $row['like_counter']; ?>"><?php// echo $row['like_counter']; ?></button>
+								<?php
+						//	} else if($rrow['user_id'] != $_SESSION['user_id']) {
+								?>
+								<input type="hidden" id="hiddenLike" value="<?php //echo $row['like_counter']; ?>">
+								<input type="hidden" name="getPhoto_id" id="getPhoto_id">
+								<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php// echo $row['like_counter']; ?></button>
+								<?php
+							//}
+						//}
+
+				?> -->
 
 			</div>
 			<?php } ?>
