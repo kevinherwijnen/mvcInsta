@@ -22,9 +22,7 @@
 
 	$test20 = $LikeCounter->getLikeAmount($_SESSION['user_id']);
 
-	while ($rrow = $test20->fetch_row()) {
-		echo $rrow[0];
-	}
+	
 
 ?>
 
@@ -53,6 +51,7 @@
  			 $id++;
 ?>        
 			<div class=' col-md-2  div-home '>
+				
 				<img class ="img-responsive img-home img-style borders"    
 					 alt="<?php echo $row['photo_description'] ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
