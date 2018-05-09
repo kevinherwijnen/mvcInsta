@@ -67,13 +67,14 @@ if(empty($fileToUpload["tmp_name"])){
 				$row = $result->fetch_row();
 
 				$intodb= "upload_images".$locationdb ;
-				$sql2 = "INSERT INTO `$intodb` (user_id, photo_name, photo_d, photo_description,randomnum)
+				$sql2 = "INSERT INTO `$intodb` (user_id, photo_name, photo_d, photo_description, randomnum, like_counter)
 				VALUES (
 				'".$this->mysqli->real_escape_string($row[0])."',
 				'".$this->mysqli->real_escape_string($fileToUpload['name'])."',
 				'".$this->mysqli->real_escape_string($target_file)."',
 				'".$this->mysqli->real_escape_string($description)."',
-				'".$this->mysqli->real_escape_string($randomnummer)."'
+				'".$this->mysqli->real_escape_string($randomnummer)."',
+				'".$this->mysqli->real_escape_string(0)."'
 			)
 			";
 
