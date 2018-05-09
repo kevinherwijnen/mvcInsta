@@ -133,3 +133,27 @@
           margin-right: auto;
             }
         }
+
+/*voor mobile version maakt de jumbotron wat kleiner op home page*/
+@media only screen and (max-width: 600px) {
+   .jumbotronHeadText {
+          font-size: 25px !important;
+        }
+
+        .jumbotronText{
+          font-size: 15px !important;
+        }
+
+        .inputstyle{
+          position: relative; 
+          display: inline-block;
+          padding-left: 10px;
+
+        }
+
+
+}
+        
+.jumbotronHeadText, .jumbotronText, .inputstyle{
+          color: black !important;
+        }

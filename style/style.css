@@ -1,5 +1,22 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
 
+#container{width:400px; margin: 0 auto;}
+
+.wrapper {
+    position: relative;
+    height: 100vh;
+}
+
+.jumbotron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
 body { padding-bottom: 100px;padding-top: 65px; 
     background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Qm51uIFmjHdATWMqX0PFD0o0qBCtgrvkvc7jv7pKHJMGk1O-');
     background-attachment:fixed;
