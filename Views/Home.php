@@ -20,6 +20,12 @@
 
 	$LikeCounter = new LikeCounter();
 
+
+	$test20 = $LikeCounter->getLikeAmount($_SESSION['user_id']);
+
+	
+
+
 ?>
 
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
@@ -46,17 +52,18 @@
 
  			 $LikeCounter2 = $LikeCounter->getLikeAmount($row['id']);
 
- 			 while($rrow = $LikeCounter2->fetch_assoc()) {
- 			 	if ($rrow['user_id'] == $_SESSION['user_id']) {
- 			 		echo "hallo";
- 			 	} else {
- 			 		echo "not hallo";
- 			 	}
- 			 }
+ 			 // while($rrow = $LikeCounter2->fetch_assoc()) {
+ 			 // 	if ($rrow['user_id'] == $_SESSION['user_id']) {
+ 			 // 		echo "hallo";
+ 			 // 	} else {
+ 			 // 		echo "not hallo";
+ 			 // 	}
+ 			 // }
 
  			 // $test20 = $LikeCounter->getLikeAmount($_SESSION['user_id'], $row['id']);
 ?>        
 			<div class=' col-md-2  div-home '>
+				
 				<img class ="img-responsive img-home img-style borders"    
 					 alt="<?php echo $row['photo_description'] ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
