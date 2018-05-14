@@ -51,16 +51,6 @@
  			 $id++;
 
  			 $LikeCounter2 = $LikeCounter->getLikeAmount($row['id']);
-
- 			 // while($rrow = $LikeCounter2->fetch_assoc()) {
- 			 // 	if ($rrow['user_id'] == $_SESSION['user_id']) {
- 			 // 		echo "hallo";
- 			 // 	} else {
- 			 // 		echo "not hallo";
- 			 // 	}
- 			 // }
-
- 			 // $test20 = $LikeCounter->getLikeAmount($_SESSION['user_id'], $row['id']);
 ?>        
 			<div class=' col-md-2  div-home '>
 				
@@ -72,50 +62,20 @@
 					 data-route-id="<?php echo $row['photo_d'];?>" 
 					 data-description-id="<?php echo $row['photo_description'];?>"
 				>		
-
-				<input type="hidden" id="hiddenLike" value="<?php echo $row['like_counter']; ?>">
+<!-- 
+				<input type="hidden" id="hiddenLike" value="<?php// echo $row['like_counter']; ?>">
 				<input type="hidden" name="getPhoto_id" id="getPhoto_id">
-				<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
+				<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php //echo $row['like_counter']; ?></button>
 
-				<input type="hidden" id="hiddenLike2" value="<?php echo $row['like_counter']; ?>">
+				<input type="hidden" id="hiddenLike2" value="<?php //echo $row['like_counter']; ?>">
 				<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
-				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button> 
-
-				<!-- <?php
-
-						//while ($rrow = $test20->fetch_assoc()) {
-						//	if ($rrow['user_id'] == $_SESSION['user_id']) {
-						//		?>
-								<input type="hidden" id="hiddenLike2" value="<?php //echo $row['like_counter']; ?>">
-								<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
-								<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php// echo $row['like_counter']; ?>"><?php// echo $row['like_counter']; ?></button>
-								<?php
-						//	} else if($rrow['user_id'] != $_SESSION['user_id']) {
-								?>
-								<input type="hidden" id="hiddenLike" value="<?php //echo $row['like_counter']; ?>">
-								<input type="hidden" name="getPhoto_id" id="getPhoto_id">
-								<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php// echo $row['like_counter']; ?></button>
-								<?php
-							//}
-						//}
-
-				?> -->
+				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php //echo $row['id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php //echo $row['like_counter']; ?></button>  -->
 
 			</div>
 			<?php } ?>
 		
 	</div>
 </div>
-
-<input type="hidden" id="hiddenInput" value="<?php echo $_SESSION['user_id']; ?>">
-<input type="hidden" id="hiddenInput2" value="<?php echo $_SESSION['user_id']; ?>">
-
-<!-- <?php //echo $row['like_counter']; ?> -->
-
-<p id="getAllp"></p>
-<p id="getAllp2"></p> 
-<p id="getAllp3"></p>
-<p id="getAllp4"></p> 
 
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
