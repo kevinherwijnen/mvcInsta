@@ -46,12 +46,13 @@ try {
 
 
 <div class="container-fluid">
-		<div class="col-md-3 " style="margin-bottom: 10px; padding-left: 0px;">
+		<div class="col-md-3 mobile" style="margin-bottom: 10px; padding-left: 0px;">
 			<img id='myImg' class="img-home borders" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='250' />
 		</div>
-		<div class="col-md-9 bio-view borders" style="margin-top: 5px;background-color: #d4b6b6;">
-			<b  style="color:#7D6E6E; "><?php echo $profile[4]; ?></b>
-
+		<div class="col-md-9 bio-view borders mobile_margin " style="margin-top: 5px;background-color: #993e3d;">
+			<div class="borders" style="width:100%;height:100%;">
+			<b  style="color:white; "><?php echo $profile[4]; ?></b>
+			</div>
 		</div>
 		
 </div>
