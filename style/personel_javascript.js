@@ -93,6 +93,8 @@ function setGetLike(element) {
 		}
 		console.log(getLike);
 
+	//met getPhotoId haal je de bijbehorende id op uit de database
+
 		var getPhotoId = element.getAttribute("data-value");
 
 
@@ -137,13 +139,16 @@ xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp2.send("x=" + dbParam2);
 };
 
-
+//----------------------------------------------------------------------------------------
 
 var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
 var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
 
+//deze functie zorgt ervoor dat jij kan disliken
+
 function setGetDislike(element) {
+	//dit is een plus in min if statement
 	var getDislike = element.value;
 	if(element.getAttribute('previousValue') == undefined){
 		element.setAttribute('previousValue', getDislike);
@@ -157,6 +162,7 @@ function setGetDislike(element) {
 			element.innerHTML = element.value;
 		}
 
+	//met getPhotoId haal je de bijbehorende id op uit de database
 	var getPhotoId = element.getAttribute("data-value");
 
 	//het updaten van de like counter in de upload_images table
@@ -165,6 +171,9 @@ function setGetDislike(element) {
 	dbParam3 = JSON.stringify(obj3);
 	xmlhttp3 = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
+
+		//readyState en status kijken of de het mogelijk is om te connecten naar de database
+
 		if (this.readyState == 4 && this.status == 200) {
 			myObj3 = JSON.parse(this.responseText);
 			for (x3 = 0; x3 < myObj3.length; x3++) {
@@ -173,6 +182,7 @@ function setGetDislike(element) {
 			document.getElementById("getAllp3").innerHTML = txt3;
 		}
 	};
+	//dit stuurd de variable door naar disLikeGet.phps
 	xmlhttp3.open("POST", "Ajax/disLikeGet.php", true);
 	xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp3.send("x=" + dbParam3);
