@@ -52,13 +52,13 @@
 
  			 $LikeCounter2 = $LikeCounter->getLikeAmount($row['id']);
 
- 			 while($rrow = $LikeCounter2->fetch_assoc()) {
- 			 	if ($rrow['user_id'] == $_SESSION['user_id']) {
- 			 		echo "hallo";
- 			 	} else {
- 			 		echo "not hallo";
- 			 	}
- 			 }
+ 			 // while($rrow = $LikeCounter2->fetch_assoc()) {
+ 			 // 	if ($rrow['user_id'] == $_SESSION['user_id']) {
+ 			 // 		echo "hallo";
+ 			 // 	} else {
+ 			 // 		echo "not hallo";
+ 			 // 	}
+ 			 // }
 
  			 // $test20 = $LikeCounter->getLikeAmount($_SESSION['user_id'], $row['id']);
 ?>        
