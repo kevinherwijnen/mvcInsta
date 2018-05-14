@@ -158,12 +158,10 @@ function setGetDislike(element) {
 		}
 
 	var getPhotoId = element.getAttribute("data-value");
-	var getSessionId = document.getElementById("hiddenInput2");
-	var getSessionId2 = parseInt(getSessionId.value);
 
-	//het updaten van alle rows in de photo_liked table
+	//het updaten van de like counter in de upload_images table
 
-	obj3 = { "table":"photo_liked", "row":getSessionId2, "row2":getPhotoId };
+	obj3 = { "table":"upload_images", "row":"like_counter", "row2":getPhotoId };
 	dbParam3 = JSON.stringify(obj3);
 	xmlhttp3 = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -175,27 +173,10 @@ function setGetDislike(element) {
 			document.getElementById("getAllp3").innerHTML = txt3;
 		}
 	};
-	xmlhttp3.open("POST", "Ajax/deleteLike.php", true);
+	xmlhttp3.open("POST", "Ajax/disLikeGet.php", true);
 	xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp3.send("x=" + dbParam3);
 
-	var getPhotoId2 = element.getAttribute("data-value");
-
-	obj4 = { "table":"upload_images", "row":"like_counter", "row2":getPhotoId2, "limit":10 };
-	dbParam4 = JSON.stringify(obj4);
-	xmlhttp4 = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			myObj4 = JSON.parse(this.responseText);
-			for (x4 = 0; x4 < myObj4.length; x4++) {
-				txt4 += myObj4[x4].like_counter;
-			}
-			document.getElementById("getAllp4").innerHTML = txt4;
-		}
-	};
-	xmlhttp4.open("POST", "Ajax/disLikeGet.php", true);
-	xmlhttp4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp4.send("x=" + dbParam4);
 } 
 
 // var obj, dbParam, xmlhttp, myObj, x, txt = "";
