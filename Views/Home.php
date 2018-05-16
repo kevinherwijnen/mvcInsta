@@ -19,6 +19,7 @@
 	}	
 
 
+
 ?>
 
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
@@ -81,6 +82,11 @@
 					<div class="col-md-6 padding-t-b-1" id="Description">
 				       <span></span>
 					</div>
+					
+					
+
+
+
 				</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
