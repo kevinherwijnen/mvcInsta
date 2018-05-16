@@ -18,7 +18,6 @@
 	    echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}	
 
-	
 
 
 ?>
@@ -56,14 +55,10 @@
 					 data-route-id="<?php echo $row['photo_d'];?>" 
 					 data-description-id="<?php echo $row['photo_description'];?>"
 				>		
-<!-- 
-				<input type="hidden" id="hiddenLike" value="<?php// echo $row['like_counter']; ?>">
-				<input type="hidden" name="getPhoto_id" id="getPhoto_id">
-				<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php //echo $row['id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php //echo $row['like_counter']; ?></button>
 
-				<input type="hidden" id="hiddenLike2" value="<?php //echo $row['like_counter']; ?>">
-				<input type="hidden" name="getPhoto_id2" id="getPhoto_id2">
-				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php //echo $row['id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php //echo $row['like_counter']; ?>"><?php //echo $row['like_counter']; ?></button>  -->
+				<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
+
+				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>  
 
 			</div>
 			<?php } ?>
