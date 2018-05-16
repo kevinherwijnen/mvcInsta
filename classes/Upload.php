@@ -98,13 +98,6 @@ public function show_foto() {
 	$result = $this->mysqli->query($sql);
 
 	return $result;
-		// 	while($row = $result->fetch_assoc()) {
-
-		// 		echo "<div class='col-md-4'>";
-		// 			echo "<img width='370' style='padding: 10px;' height='300' src=".$row['photo_d'].">";			
-		// 		echo "</div>";
-
-		// } 
 
 } 
 

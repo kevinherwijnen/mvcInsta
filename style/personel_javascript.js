@@ -123,10 +123,10 @@ function setGetLike(element) {
 	    	//gedecode en opgehaald
 
 	        myObj = JSON.parse(this.responseText);
-	        for (x in myObj) {
-	            txt += myObj[x].like_counter + "<br>";
-	        }
-	        document.getElementById("demo").innerHTML = txt;
+	        // for (x in myObj) {
+	        //     txt += myObj[x].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt;
 	    }
 
 	};
@@ -145,8 +145,8 @@ function setGetLike(element) {
 
 var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
 
-function setGetDislike(element) {
-	getDislike = element.value;
+function setGetDislike(element2) {
+	getDislike = element2.value;
 
 	//hier word een if statement gedaan
 	//waarbij er word gekeken of het vorige value 
@@ -155,33 +155,33 @@ function setGetDislike(element) {
 	//met de vorige value en zal de statement plus of min
 	//doen naarmate de actie is gemaakt
 
-	if(element.getAttribute('previousValue') == undefined){
-		element.setAttribute('previousValue', getDislike);
-		element.value = --getDislike;
-		element.innerHTML = element.value;
+	if(element2.getAttribute('previousValue') == undefined){
+		element2.setAttribute('previousValue', getDislike);
+		element2.value = --getDislike;
+		element2.innerHTML = element2.value;
 	} else {
-		if(element.getAttribute('previousValue') == element.value){
-			element.value = --getDislike;
+		if(element2.getAttribute('previousValue') == element2.value){
+			element2.value = --getDislike;
 		} else {
-			element.value = ++getDislike; }
-			element.innerHTML = element.value;
+			element2.value = ++getDislike; }
+			element2.innerHTML = element2.value;
 		}
 
-	var getDislikeId = element.getAttribute('data-value');
-	var getUserId = element.getAttribute('data-id');
+	var getDislikeId2 = element2.getAttribute('data-value');
+	var getUserId2 = element2.getAttribute('data-id');
 
 	//het maken van een json object
 	//het object wordt samengeperst tot een tekst door JSON.stringify
 	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
 
-	obj2 = { "table":"like_counter", "limit":10, "user_id":getUserId, "photo_id":getDislikeId };
+	obj2 = { "table":"like_counter", "limit":10, "user_id":getUserId2, "photo_id":getDislikeId2 };
 	dbParam2 = JSON.stringify(obj2);
 	xmlhttp2 = new XMLHttpRequest();
 
 	//onreadystatechange wordt uitgevoerd wanneer
 	//er een verandering is in de XMLHttpRequest
 
-	xmlhttp.onreadystatechange = function() {
+	xmlhttp2.onreadystatechange = function() {
 
 		//this.readyState == 4 && this.status == 200 
 		//is een check om te kijken of je door kan gaan met de functie
@@ -192,10 +192,10 @@ function setGetDislike(element) {
 	    	//gedecode en opgehaald
 
 	        myObj2 = JSON.parse(this.responseText);
-	        for (x2 in myObj2) {
-	            txt2 += myObj2[x2].like_counter + "<br>";
-	        }
-	        document.getElementById("demo").innerHTML = txt2;
+	        // for (x2 in myObj2) {
+	        //     txt2 += myObj2[x2].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt2;
 	    }
 
 	};
