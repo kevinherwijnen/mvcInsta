@@ -16,12 +16,7 @@
 
 	} catch (Exception $e) {
 	    echo 'Caught exception: ',  $e->getMessage(), "\n";
-	}
-
-	$LikeCounter = new LikeCounter();
-
-
-	$test20 = $LikeCounter->getLikeAmount($_SESSION['user_id']);
+	}	
 
 	
 
@@ -50,7 +45,6 @@
 			while($row = $fotos->fetch_assoc()) {
  			 $id++;
 
- 			 $LikeCounter2 = $LikeCounter->getLikeAmount($row['id']);
 ?>        
 			<div class=' col-md-2  div-home '>
 				
@@ -93,6 +87,11 @@
 					<div class="col-md-6 padding-t-b-1" id="Description">
 				       <span></span>
 					</div>
+					
+					
+
+
+
 				</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

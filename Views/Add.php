@@ -87,7 +87,7 @@
 			</div>
 		</div>
 	</div>
-
+	</div>
 	<script type="text/javascript">
 	    // zorgt er voor dat je de naam kan veranderen van upload image
 	    $(":file").filestyle();
