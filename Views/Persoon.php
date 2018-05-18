@@ -76,12 +76,13 @@ if (isset($_POST['submitdel'])) {
 			while($row = $test->fetch_assoc()) {
  			 $id++;
 		?>        
-			<div class=' col-md-3  div-home '>
+			<div class=' col-md-3 <?php echo $id ?> div-home '>
 				<img class ="img-responsive img-home img-style borders"    
 					 alt="<?php echo $row['photo_description'] ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
 					 href="#my_modal" 
 					 data-toggle="modal" 
+					 data-id ="<?php echo $id ?>" 
 					 data-route-id="<?php echo $row['photo_d'];?>" 
 					 data-description-id="<?php echo $row['photo_description'];?>"
 				>		
@@ -104,7 +105,8 @@ if (isset($_POST['submitdel'])) {
 				</button>
 				<h4 class="modal-title">Modal header</h4>
 			</div>
-				<div class="col-md-12 "><div class=' col-md-6  div-home-model padding-t-b-1'>
+				<div class="col-md-12 ">
+					<div class=' col-md-6  div-home-model padding-t-b-1'>
 						<img id="myImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
 					</div>
 					<div class="col-md-6 padding-t-b-1" id="Description">
@@ -113,14 +115,26 @@ if (isset($_POST['submitdel'])) {
 
 					
 
-					<form action="" method="POST"	enctype="multipart/form-data">
-						<input type="hidden" data-input="false" data-classIcon="icon-plus"  name="route" id="routeLoc" value="">
-						<input type="submit" class="btn btn-block btn-success" value="delete" name="submitdel" >
-</form>
+					
 
 				</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<div class="col-md-12 ">
+					<div class="col-md-6 " style="text-align: middle">
+						<!-- hier komt het like systeem -->
+					</div>
+					<div class="col-md-6 ">
+				<div style="float: right;">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+
+				<div style="float: right;margin-right: 8px;">
+				<form action="" method="POST"	enctype="multipart/form-data">
+						<input type="hidden" data-input="false" data-classIcon="icon-plus"  name="route" id="routeLoc" value="">
+						<input id="" type="submit" class="btn btn-success" value="Delete the post" name="submitdel" >
+					</form>
+				</div>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
