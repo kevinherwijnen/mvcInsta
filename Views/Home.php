@@ -18,7 +18,7 @@
 	    echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}	
 
-
+	$lol = new likeSession();
 
 ?>
 
@@ -42,6 +42,8 @@
 			$fotos = $get_p->show_foto();
 			$id= 0;
 			while($row = $fotos->fetch_assoc()) {
+			$lol2 = $lol->test($row['id']);
+			echo "<input type='hidden' id='uP' value='".$row['id']."'>";
  			 $id++;
 
 ?>        
@@ -54,17 +56,32 @@
 					 data-toggle="modal" 
 					 data-route-id="<?php echo $row['photo_d'];?>" 
 					 data-description-id="<?php echo $row['photo_description'];?>"
-				>		
+				>
 
-				<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
+			<?php 
+				while ($row2 = $lol2->fetch_assoc()) {
+					if ($row2['Active'] == 0) {
+			?>
+						<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
+					<?php 
+					} else if ($row2['Active'] == 1) {				
+					?>
+						<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>  
 
-				<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>  
+			<?php
+					}
+				}
+			?>
 
 			</div>
 			<?php } ?>
 		
 	</div>
 </div>
+
+<!-- <input type="hidden" id="uS" value="<?php echo $_SESSION['user_id']; ?>"> -->
+
+<!-- <p id='demo'></p> -->
 
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
