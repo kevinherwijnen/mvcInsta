@@ -53,18 +53,12 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 <div class="container">
 	<div class="col-md-12">
 		<form action="" method="POST"	enctype="multipart/form-data">
-		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
-			<img id='myImg'  href="#myModal1" 
-					 data-toggle="modal" class="img-responsive img-home img-style borders" 
-					 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='250' />
+		<div class="col-md-4">
+			<img id="myImg" src="<?php echo $profile[3]; ?>" alt="your image" style="width: 100%;" height="209" />
 		</div>
-
-		
-			<textarea class="col-md-9 bio-view borders mobile_margin " name="description" style="height:100%; background-color:#993e3d;margin-top: 5px; color:white;" ><?php echo $profile[4]; ?></textarea>
-			
-		
-
-		
+		<div class="col-md-8" style="height: 209px; background-color: purple">
+			<textarea name="description" style="height:100%" ><?php echo $profile[4]; ?></textarea>
+		</div>
 		<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
 			<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
 		</div>
@@ -94,30 +88,4 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 	</div>
 </div>
 
-
-
-<!-- model for profile img'es -->
-<div class=" modal" id="myModal1">
-	<div class="modal-dialog" style="width:80%;">
-
-		<div class="container-fluid modal-content model-background borders">
-			<div class="modal-header">
-				<button class="close" type="hidden"></button>
-				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
-					<span aria-hidden="true" style="color:black;">&times;</span>
-				</button>
-				<h4 class="modal-title">Modal header</h4>
-			</div>
-				<div class="col-md-12 "><div class=' col-md-12  div-home-model padding-t-b-1'>
-						<img id="myProfileImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
-					</div>
-					
-
-				</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
 

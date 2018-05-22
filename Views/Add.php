@@ -47,7 +47,7 @@
 
 			</div>
 			<div class="col-md-9 ">
-				<textarea name="description" rows="9" cols="100" class="form-control" style="height: 210px;margin-top: 5px;background-color: #993e3d; color:white;"></textarea>
+				<textarea name="description" rows="9" cols="100" class="form-control"></textarea>
 			</div>
 
 			<div class="col-md-4" style="float: right;">
