@@ -3,6 +3,7 @@ RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|jpg)$ [NC]
 RewriteCond %{REQUEST_FILENAME} !searchEngine\.php$
 RewriteCond %{REQUEST_FILENAME} !addLikes\.php$
 RewriteCond %{REQUEST_FILENAME} !deleteLikes\.php$
+RewriteCond %{REQUEST_FILENAME} !likeSession\.php$
 RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
 
 
