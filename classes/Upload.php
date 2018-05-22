@@ -143,7 +143,7 @@ public function delImg($route) {
 	unlink($route);
 	$this->mysqli->query($sql2);
 
-	//header("location:persoon");
+	header("Refresh:0");
 }
 
 

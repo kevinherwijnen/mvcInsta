@@ -50,16 +50,15 @@
 			while($row2 = $result2->fetch_assoc()) {
 				$id++;
 				echo "
-				<div class=' col-md-3  div-home '>
-				<img class ='img-responsive img-home img-style borders'    
-					 alt='". $row2['photo_description'] ." ' 
-					 src='".$row2['photo_d']."' 
-					 href='#my_modal' 
-					 data-toggle='modal' 
-					 data-route-id='". $row2['photo_d']."' 
-					 data-description-id='". $row2['photo_description']."'
-				>		
-			</div>
+				
+
+
+			<div class=' col-md-3 1 div-home ' >
+			<img id='myImg'  href='#my_modal'
+					 data-toggle='modal' class='img-responsive img-home img-style borders' 
+					 data-route-id='". $row2['photo_d']."' src='".$row2['photo_d']."' alt='". $row2['photo_description'] ."' style=' width: 100%;' height='250'
+					 data-description-id='". $row2['photo_description']."' />
+		</div>
 				";
 			}
 			 
