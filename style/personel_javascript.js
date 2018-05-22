@@ -248,6 +248,8 @@ function setGetDislike(element2) {
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
 
+
+
 }
 
 
