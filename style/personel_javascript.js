@@ -112,6 +112,10 @@ $(document).ready(function(){
 });
 
 
+$(window).on('beforeunload', function() {
+    $(window).scrollTop(0);
+});
+
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
@@ -177,7 +181,7 @@ function setGetLike(element) {
 	xmlhttp.open("POST", "Ajax/addLikes.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
-
+	location.reload();
 }
 
 
@@ -246,7 +250,7 @@ function setGetDislike(element2) {
 	xmlhttp2.open("POST", "Ajax/deleteLikes.php", true);
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
-
+	location.reload();
 }
 
 

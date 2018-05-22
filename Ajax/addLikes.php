@@ -14,10 +14,12 @@ $sql = "SELECT Active
 
 $result2 = $conn->query($sql);
 
-while ($fetch_row = $result2->fetch_assoc()) {
-	if (is_null($fetch_row['Active'])) {
-		$result3 = $conn->query("INSERT INTO photo_liked (user_id, photo_id, Active) VALUES (".$obj->user_id.", ".$obj->photo_id.", 1)");
-	} else {}
+$count_row = mysqli_num_rows($result2);
+
+if ($count_row >= 1) {
+	$result3 = $conn->query("UPDATE photo_liked SET Active = 1 WHERE user_id = ".$obj->user_id." AND photo_id = ".$obj->photo_id." ");
+} else {
+	$result3 = $conn->query("INSERT INTO photo_liked (user_id, photo_id, Active) VALUES (".$obj->user_id.", ".$obj->photo_id.", 1)");
 }
 
 $outp = array();
