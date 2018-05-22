@@ -59,26 +59,17 @@
 				>
 
 			<?php 
-				$my_count = mysqli_num_rows($lol2);
-				if ($my_count >= 1) {
-					while ($row2 = $lol2->fetch_assoc()) {
-
-						if ($row2['Active'] == 0) {
-
-						?>
-							<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
-					<?php
-						} else if ($row2['Active'] == 1) {				
-					?>
-							<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>  
-
-						<?php
-						}
-					}
-				} else {
-					?>
+				while ($row2 = $lol2->fetch_assoc()) {
+					if ($row2['Active'] == 0) {
+			?>
 						<button id="myLike" type="submit" class="btn-success" name="insertLike" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetLike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>
-					<?php
+					<?php 
+					} else if ($row2['Active'] == 1) {				
+					?>
+						<button id="myLike2" type="submit" class="btn-danger" name="insertLike2" data-value="<?php echo $row['id']; ?>" data-id="<?php echo $_SESSION['user_id']; ?>" onclick="setGetDislike(this);" style="padding: 10px; border-radius: 5px;" value="<?php echo $row['like_counter']; ?>"><?php echo $row['like_counter']; ?></button>  
+
+			<?php
+					}
 				}
 			?>
 
@@ -88,7 +79,7 @@
 	</div>
 </div>
 
-<!-- <input type="hidden" id="uS" value="<?php //echo $_SESSION['user_id']; ?>"> -->
+<!-- <input type="hidden" id="uS" value="<?php echo $_SESSION['user_id']; ?>"> -->
 
 <!-- <p id='demo'></p> -->
 

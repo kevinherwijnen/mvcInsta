@@ -112,10 +112,6 @@ $(document).ready(function(){
 });
 
 
-$(window).on('beforeunload', function() {
-    $(window).scrollTop(0);
-});
-
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
@@ -181,7 +177,7 @@ function setGetLike(element) {
 	xmlhttp.open("POST", "Ajax/addLikes.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
-	location.reload();
+
 }
 
 
@@ -251,12 +247,16 @@ function setGetDislike(element2) {
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 =======
 	location.reload();
 >>>>>>> 919873d12008beda074dd1d3e191626dcac8c3c8
+=======
+
+>>>>>>> parent of b1ed74b... update
 }
 
 
