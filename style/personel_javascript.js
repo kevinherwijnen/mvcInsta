@@ -139,6 +139,7 @@ function setGetLike(element) {
 
 	var getLikeId = element.getAttribute('data-value');
 	var getUserId = element.getAttribute('data-id');
+	console.log(getUserId);
 
 	//het maken van een json object
 	//het object wordt samengeperst tot een tekst door JSON.stringify
@@ -231,10 +232,10 @@ function setGetDislike(element2) {
 	    	//gedecode en opgehaald
 
 	        myObj2 = JSON.parse(this.responseText);
-	        for (x2 in myObj2) {
-	            txt2 += myObj2[x2].like_counter + "<br>";
-	        }
-	        document.getElementById("demo").innerHTML = txt2;
+	        // for (x2 in myObj2) {
+	        //     txt2 += myObj2[x2].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt2;
 	    }
 
 	};
@@ -246,62 +247,10 @@ function setGetDislike(element2) {
 	xmlhttp2.open("POST", "Ajax/deleteLikes.php", true);
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 
-<<<<<<< HEAD
-
-
-=======
-=======
-	location.reload();
->>>>>>> 919873d12008beda074dd1d3e191626dcac8c3c8
-=======
-
->>>>>>> parent of b1ed74b... update
->>>>>>> d3faaccec3839d647a50c1681e3fc0f95d4aabd4
 }
 
 
-// var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
-// var getUser_Id = document.getElementById('uS');
-// var getUser_Id2 = parseInt(getUser_Id.value);
-// var getPhoto_Id = document.getElementById('uP');
-// var getPhoto_Id2 = parseInt(getPhoto_Id.value);
-
-// 	obj3 = { "table":getUser_Id2, "table2":getPhoto_Id2, "limit":100 };
-// 	dbParam3 = JSON.stringify(obj3);
-// 	xmlhttp3 = new XMLHttpRequest();
-
-	//onreadystatechange wordt uitgevoerd wanneer
-	//er een verandering is in de XMLHttpRequest
-
-	// xmlhttp3.onreadystatechange = function() {
-
-		// this.readyState == 4 && this.status == 200 
-		//is een check om te kijken of je door kan gaan met de functie
-
-	    // if (this.readyState == 4 && this.status == 200) {
-
-	    	//hieronder wordt alles automatisch bekeken 
-	    	//gedecode en opgehaald
-
-	        // myObj3 = JSON.parse(this.responseText);
-	        // for (x3 in myObj3) {
-	            // txt3 += myObj3[x3].user_id;
-	        // }
-	        // document.getElementById("demo").innerHTML = txt3;
-	    // }
-
-	// };
-
-	//hieronder wordt alles geopend
-	//gevraagd wat voor type er moet worden doorgestuurd
-	//en welke variable er precies wordt doorgestuurd
-
-	// xmlhttp3.open("POST", "Ajax/likeSession.php", true);
-	// xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// xmlhttp3.send("x=" + dbParam3);
