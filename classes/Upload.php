@@ -98,13 +98,6 @@ public function show_foto() {
 	$result = $this->mysqli->query($sql);
 
 	return $result;
-		// 	while($row = $result->fetch_assoc()) {
-
-		// 		echo "<div class='col-md-4'>";
-		// 			echo "<img width='370' style='padding: 10px;' height='300' src=".$row['photo_d'].">";			
-		// 		echo "</div>";
-
-		// } 
 
 } 
 
@@ -141,9 +134,21 @@ public function unlink($user_id) {
 	$this->mysqli->query($sql2);
 }
 
+public function delImg($route) {
 
+	
+//echo $this->mysqli->query($randomnum);
+
+	$sql2 = "DELETE FROM upload_images WHERE `photo_d` = '$route'";
+	unlink($route);
+	$this->mysqli->query($sql2);
+
+	header("Refresh:0");
+}
 
 
 }
+
+
 ?>
 

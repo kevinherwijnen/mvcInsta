@@ -50,6 +50,27 @@ $('img').each(function(){
 	
 })
 
+
+// Get the modal for profile img'es
+var modal1 = document.getElementById('myModal1');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img;
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+$('img').each(function(){
+	$(this).on('click',function(){
+		var  id = $(this).attr('id');
+		console.dir(id);
+		img = document.getElementById(id);
+		modal1.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	})
+	
+})
+
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -64,22 +85,46 @@ $(document).ready(function(){
 		var RouteId = $(e.relatedTarget).data('route-id');
 		var DescriptionId = $(e.relatedTarget).data('description-id');
 		
-		$('img#myImage').attr('src', RouteId);
+		$('#myImage').attr('src', RouteId);
 
 		$('#Description span').text(DescriptionId);
+
+
+		$('#routeLoc').attr('value', RouteId);
+	});
+	
+});
+
+
+//om de foto in de modal voor profile img'es te open heb je dit stukje nodig die de route van de image toestuurt
+$(document).ready(function(){
+	$('#myModal1').on('show.bs.modal', function(e) {
+		var RouteId = $(e.relatedTarget).data('route-id');
+		
+		
+		$('#myProfileImage').attr('src', RouteId);
+
+		
+
+		$('#myProfileImage').attr('value', "RouteId");
 	});
 	
 });
 
 
 
-
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
-
 function setGetLike(element) {
-	var getLike = element.value;
+	getLike = element.value;
+
+	//hier word een if statement gedaan
+	//waarbij er word gekeken of het vorige value 
+	//bestaat of niet en als de vorige value wel bestaat
+	//kijkt de if statement of de nieuwe value overeenkomt
+	//met de vorige value en zal de statement plus of min
+	//doen naarmate de actie is gemaakt
+
 	if(element.getAttribute('previousValue') == undefined){
 		element.setAttribute('previousValue', getLike);
 		element.value = ++getLike;
@@ -91,71 +136,121 @@ function setGetLike(element) {
 			element.value = --getLike; }
 			element.innerHTML = element.value;
 		}
-		console.log(getLike);
 
-		var getPhotoId = element.getAttribute("data-value");
+	var getLikeId = element.getAttribute('data-value');
+	var getUserId = element.getAttribute('data-id');
+	console.log(getUserId);
+
+	//het maken van een json object
+	//het object wordt samengeperst tot een tekst door JSON.stringify
+	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
+
+	obj = { "table":"like_counter", "limit":10, "user_id":getUserId, "photo_id":getLikeId };
+	dbParam = JSON.stringify(obj);
+	xmlhttp = new XMLHttpRequest();
+
+	//onreadystatechange wordt uitgevoerd wanneer
+	//er een verandering is in de XMLHttpRequest
+
+	xmlhttp.onreadystatechange = function() {
+
+		//this.readyState == 4 && this.status == 200 
+		//is een check om te kijken of je door kan gaan met de functie
+
+	    if (this.readyState == 4 && this.status == 200) {
+
+	    	//hieronder wordt alles automatisch bekeken 
+	    	//gedecode en opgehaald
+
+	        myObj = JSON.parse(this.responseText);
+	        // for (x in myObj) {
+	        //     txt += myObj[x].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt;
+	    }
+
+	};
+
+	//hieronder wordt alles geopend
+	//gevraagd wat voor type er moet worden doorgestuurd
+	//en welke variable er precies wordt doorgestuurd
+
+	xmlhttp.open("POST", "Ajax/addLikes.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("x=" + dbParam);
+
+}
 
 
-//het updaten van de like counter in de upload_images table
 
-obj = { "table":"upload_images", "row":getLike, "row2":getPhotoId, "limit":10 };
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		myObj = JSON.parse(this.responseText);
-		for (x = 0; x < myObj.length; x++) {
-			txt += myObj[x].like_counter;
+var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
+
+function setGetDislike(element2) {
+	getDislike = element2.value;
+
+	//hier word een if statement gedaan
+	//waarbij er word gekeken of het vorige value 
+	//bestaat of niet en als de vorige value wel bestaat
+	//kijkt de if statement of de nieuwe value overeenkomt
+	//met de vorige value en zal de statement plus of min
+	//doen naarmate de actie is gemaakt
+
+	if(element2.getAttribute('previousValue') == undefined){
+		element2.setAttribute('previousValue', getDislike);
+		element2.value = --getDislike;
+		element2.innerHTML = element2.value;
+	} else {
+		if(element2.getAttribute('previousValue') == element2.value){
+			element2.value = --getDislike;
+		} else {
+			element2.value = ++getDislike; }
+			element2.innerHTML = element2.value;
 		}
-		document.getElementById("getAllp").innerHTML = txt;
-	}
-};
-xmlhttp.open("POST", "Ajax/likeGet.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("x=" + dbParam);
 
-var getPhotoId2 = element.getAttribute("data-value");
-var getSessionId = document.getElementById("hiddenInput");
-var getSessionId2 = parseInt(getSessionId.value);
+	var getDislikeId2 = element2.getAttribute('data-value');
+	var getUserId2 = element2.getAttribute('data-id');
 
-//het updaten van alle rows in de photo_liked table
+	//het maken van een json object
+	//het object wordt samengeperst tot een tekst door JSON.stringify
+	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
 
-obj2 = { "table":"photo_liked", "row":getSessionId2, "row2":getPhotoId2 };
-dbParam2 = JSON.stringify(obj2);
-xmlhttp2 = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		myObj2 = JSON.parse(this.responseText);
-		for (x2 = 0; x2 < myObj2.length; x2++) {
-			txt2 += myObj2[x2].like_counter;
-		}
-		document.getElementById("getAllp2").innerHTML = txt;
-	}
-};
-xmlhttp2.open("POST", "Ajax/insertLike.php", true);
-xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp2.send("x=" + dbParam2);
-}; 
+	obj2 = { "table":"like_counter", "limit":10, "user_id":getUserId2, "photo_id":getDislikeId2 };
+	dbParam2 = JSON.stringify(obj2);
+	xmlhttp2 = new XMLHttpRequest();
 
-// var obj, dbParam, xmlhttp, myObj, x, txt = "";
+	//onreadystatechange wordt uitgevoerd wanneer
+	//er een verandering is in de XMLHttpRequest
 
-// var getPhotoId = document.getElementById("getPhoto_id");
-// var getPhotoIdValue = parseInt(getPhotoId.value);
+	xmlhttp2.onreadystatechange = function() {
 
-// obj = { "table":"upload_images", "limit":10 };
-// dbParam = JSON.stringify(obj);
-// xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//         myObj = JSON.parse(this.responseText);
-//         for (x = 0; x < myObj.length; x++) {
-//             txt += myObj[x].like_counter + "<br>";
-//         }
-//         document.getElementById("myLike").innerHTML = txt;
-//     }
-// };
-// xmlhttp.open("GET", "Ajax/likeGet.php?x=" + dbParam, true);
-// xmlhttp.send();
+		//this.readyState == 4 && this.status == 200 
+		//is een check om te kijken of je door kan gaan met de functie
+
+	    if (this.readyState == 4 && this.status == 200) {
+
+	    	//hieronder wordt alles automatisch bekeken 
+	    	//gedecode en opgehaald
+
+	        myObj2 = JSON.parse(this.responseText);
+	        // for (x2 in myObj2) {
+	        //     txt2 += myObj2[x2].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt2;
+	    }
+
+	};
+
+	//hieronder wordt alles geopend
+	//gevraagd wat voor type er moet worden doorgestuurd
+	//en welke variable er precies wordt doorgestuurd
+
+	xmlhttp2.open("POST", "Ajax/deleteLikes.php", true);
+	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp2.send("x=" + dbParam2);
+
+
+
+}
 
 
 
