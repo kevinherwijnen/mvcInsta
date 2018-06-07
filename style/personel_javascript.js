@@ -282,7 +282,7 @@ function addReaction() {
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var myReaction = document.getElementById('Reactions');
-	var getMyReaction = "<br>" + myReaction.value + "<hr style='width:50%;border-top: 2.3px solid #ca1616;float: unset;'>";
+	var getMyReaction = myReaction.value;
 	var demo2 = document.getElementById('demo2');
 	demo2.innerHTML = getMyReaction;
 
