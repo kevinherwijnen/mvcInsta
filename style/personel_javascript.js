@@ -84,6 +84,9 @@ $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function(e) {
 		var RouteId = $(e.relatedTarget).data('route-id');
 		var DescriptionId = $(e.relatedTarget).data('description-id');
+		var photoId = $(e.relatedTarget).data('photo-id');
+		var userId = $(e.relatedTarget).data('id');
+		var commentId = $(e.relatedTarget).data('reaction');
 		
 		$('#myImage').attr('src', RouteId);
 
@@ -91,6 +94,12 @@ $(document).ready(function(){
 
 
 		$('#routeLoc').attr('value', RouteId);
+
+		$('#getMyPhotoId').attr('value', photoId);
+
+		$('#getMyPhotoId').attr('data-id', userId);
+
+		$('#getMyPhotoId').attr('data-reaction', commentId);
 	});
 	
 });
@@ -111,6 +120,11 @@ $(document).ready(function(){
 	
 });
 
+
+$(window).on('beforeunload', function() {
+	var test2000 = $(window).scrollTop();
+	$(window).scrollTop(test2000);
+});
 
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
@@ -139,7 +153,9 @@ function setGetLike(element) {
 
 	var getLikeId = element.getAttribute('data-value');
 	var getUserId = element.getAttribute('data-id');
+
 	console.log(getUserId);
+
 
 	//het maken van een json object
 	//het object wordt samengeperst tot een tekst door JSON.stringify
@@ -179,6 +195,10 @@ function setGetLike(element) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 
+	// location.reload();
+	// window.location.reload();
+	setTimeout(location.reload.bind(location), 25);
+	
 }
 
 
@@ -248,9 +268,90 @@ function setGetDislike(element2) {
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
 
-
+	// window.location.reload();
+	// location.reload();
+	setTimeout(location.reload.bind(location), 25);
 
 }
 
+var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
+function addReaction() {
 
+	var getMyPhotoId = document.getElementById('getMyPhotoId');
+	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
+	var getMyPhotoId3 = getMyPhotoId.value;
+	var myReaction = document.getElementById('Reactions');
+	var getMyReaction = "<br>" + myReaction.value + "<hr style='width:50%;border-top: 2.3px solid #ca1616;float: unset;'>";
+	var demo2 = document.getElementById('demo2');
+	demo2.innerHTML = getMyReaction;
+
+	if(getMyReaction == "") {
+		alert("it seems that you have not commited anything");
+	} else {
+
+		obj3 = { "table":"addreaction", "row":parseInt(getMyPhotoId2), "row2":parseInt(getMyPhotoId3), "row3":String(getMyReaction) };
+		dbParam3 = JSON.stringify(obj3);
+		xmlhttp3 = new XMLHttpRequest();
+
+		xmlhttp3.onreadystatechange = function() {
+
+		    if (this.readyState == 4 && this.status == 200) {
+
+		        myObj3 = JSON.parse(this.responseText);
+		        // for (x3 in myObj3) {
+		        //     txt3 += myObj3[x3].comment;
+		        // }
+
+		        // document.getElementById("demo").innerHTML = txt3;
+
+		    }
+
+		};
+
+		xmlhttp3.open("POST", "Ajax/addReactions.php", true);
+		xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp3.send("x=" + dbParam3);
+	}
+}
+
+var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
+
+function openComments() {
+
+	var getMyPhotoId = document.getElementById('getMyPhotoId');
+	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
+	var getMyPhotoId3 = getMyPhotoId.value;
+	var getMyPhotoId4 = getMyPhotoId.getAttribute('data-reaction');
+
+	obj4 = { "myTable":"addreaction", "myRow":parseInt(getMyPhotoId3) };
+	dbParam4 = JSON.stringify(obj4);
+	xmlhttp4 = new XMLHttpRequest();
+
+	xmlhttp4.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			myObj4 = JSON.parse(this.responseText);
+			for (x4 in myObj4) {
+				txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+			}
+			document.getElementById("demo").innerHTML = txt4;
+		}
+	}
+
+	xmlhttp4.open("GET", "Ajax/openReactions.php?x=" + dbParam4, true);
+	xmlhttp4.send();
+
+}
+
+$(document).ready(function(){
+	$('#my_modal').on('show.bs.modal', function() {
+		openComments();
+	});
+});
+
+$(document).ready(function() {
+	$('#my_modal').on('hide.bs.modal', function() {
+		location.reload();
+		
+	});
+});
