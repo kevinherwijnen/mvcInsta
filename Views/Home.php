@@ -20,7 +20,6 @@ try {
 
 $LikeSession = new likeSession();
 $ReactCheck = new ReactCheck();
-$SearchInfo = new SearchInfo();
 
 ?>
 
@@ -50,7 +49,6 @@ $SearchInfo = new SearchInfo();
 			echo "<input type='hidden' id='uP' value='".$row['id']."'>";
  			// $id++;
 			$ReactCheck2 = $ReactCheck->UserReactCheck($row['id']);
-			$SearchInfo2 = $SearchInfo->sLink($row['id']);
 
 			
 			?>        
@@ -71,12 +69,9 @@ $SearchInfo = new SearchInfo();
 				<?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
 					data-reaction="<?php echo $row3000['comment']; 
 					?>"
-				<?php }	?>
-				<?php while($row4000 = $SearchInfo2->fetch_assoc()) {?>
-					data-user-post="<?php echo $row4000['username']; ?>"
-					data-user-post-id="<?php echo $row4000['user_id']; ?>"
-				<?php } ?>
-
+					<?php 
+				} 
+				?>
 				>
 
 				<div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
@@ -161,7 +156,7 @@ $SearchInfo = new SearchInfo();
 				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
 					<span aria-hidden="true" style="color:black;">&times;</span>
 				</button>
-				<h4 class="modal-title"><a style="cursor: pointer" id="userPost"></a></h4>
+				<h4 class="modal-title">Modal header</h4>
 			</div>
 			<div class="col-md-12 ">
 				<div class=' col-md-6  div-home-model padding-t-b-1'>
@@ -171,11 +166,14 @@ $SearchInfo = new SearchInfo();
 					<span></span>
 				</div>
 				<span>Voeg reactie toe:</span><br>
-				<p style="color: white;" id="demo2"></p>
-				<input type="hidden" id="getMyPhotoId">
-				<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
-				<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button><br>
-				<p style="color: white;" id="demo"></p>
+			
+			<input type="hidden" id="getMyPhotoId">
+			<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
+			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button>
+			<div style="height: 50%;">
+			<p style="color: white;" id="demo2"></p>
+			<p style="color: white;color: white;height: 310px;overflow: auto;padding-top: 20px;" id="demo" ></p>
+			</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

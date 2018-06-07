@@ -17,14 +17,67 @@
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
+
 		reader.onload = function (e) {
 			$('#myImg')
 			.attr('src', e.target.result)
+			
 		};
+
 		reader.readAsDataURL(input.files[0]);
 	}
 }
 
+
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img;
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+$('img').each(function(){
+	$(this).on('click',function(){
+		var  id = $(this).attr('id');
+		console.dir(id);
+		img = document.getElementById(id);
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	})
+	
+})
+
+
+// Get the modal for profile img'es
+var modal1 = document.getElementById('myModal1');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img;
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+$('img').each(function(){
+	$(this).on('click',function(){
+		var  id = $(this).attr('id');
+		console.dir(id);
+		img = document.getElementById(id);
+		modal1.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	})
+	
+})
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+	modal.style.display = "none";
+}
 
 //om de foto in de modal te open heb je dit stukje nodig die de route van de image toestuurt
 $(document).ready(function(){
@@ -34,8 +87,6 @@ $(document).ready(function(){
 		var photoId = $(e.relatedTarget).data('photo-id');
 		var userId = $(e.relatedTarget).data('id');
 		var commentId = $(e.relatedTarget).data('reaction');
-		var userPost = $(e.relatedTarget).data('user-post');
-		var userPostId = $(e.relatedTarget).data('user-post-id');
 		
 		$('#myImage').attr('src', RouteId);
 
@@ -49,12 +100,6 @@ $(document).ready(function(){
 		$('#getMyPhotoId').attr('data-id', userId);
 
 		$('#getMyPhotoId').attr('data-reaction', commentId);
-
-		$('#userPost').attr('user-post', userPost);
-
-		$('#userPost').attr('href', "http://localhost/GitHub/mvcInsta/search-info?id=" + userPostId);
-
-		$('#userPost').text(userPost);
 	});
 	
 });
@@ -76,11 +121,9 @@ $(document).ready(function(){
 });
 
 
-//krijg de momentele scroll hoogte van de pagina 
-//en blijf op de hoogte staan tijdens het herladen van de pagina 
 $(window).on('beforeunload', function() {
-	var scrollTopHeight = $(window).scrollTop();
-	$(window).scrollTop(scrollTopHeight);
+	var test2000 = $(window).scrollTop();
+	$(window).scrollTop(test2000);
 });
 
 
@@ -136,7 +179,10 @@ function setGetLike(element) {
 	    	//gedecode en opgehaald
 
 	        myObj = JSON.parse(this.responseText);
-
+	        // for (x in myObj) {
+	        //     txt += myObj[x].like_counter + "<br>";
+	        // }
+	        // document.getElementById("demo").innerHTML = txt;
 	    }
 
 	};
@@ -222,37 +268,28 @@ function setGetDislike(element2) {
 	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp2.send("x=" + dbParam2);
 
+	// window.location.reload();
+	// location.reload();
 	setTimeout(location.reload.bind(location), 25);
 
 }
 
 var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
-//addreaction functie voegt een reactie toe aan de database 
 function addReaction() {
-	//krijg het id van de hidden input in de modal 
-	var getMyPhotoId = document.getElementById('getMyPhotoId');
 
-	//krijg de data-id en de value van de hidden input id in de modal
+	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
-
-	//krijg het id van de input reactions 
-	//en vraag daarbij ook de value ervan op 
 	var myReaction = document.getElementById('Reactions');
 	var getMyReaction = myReaction.value;
-
-	//krijg de id van de demo2 P tag 
-	//en zet de html naar de momentele text die je net heb getypt 
 	var demo2 = document.getElementById('demo2');
 	demo2.innerHTML = getMyReaction;
 
-	//if statement voor als er niks in de input is ingevuld 
 	if(getMyReaction == "") {
 		alert("it seems that you have not commited anything");
 	} else {
 
-		//standaard ajax code 
 		obj3 = { "table":"addreaction", "row":parseInt(getMyPhotoId2), "row2":parseInt(getMyPhotoId3), "row3":String(getMyReaction) };
 		dbParam3 = JSON.stringify(obj3);
 		xmlhttp3 = new XMLHttpRequest();
@@ -262,6 +299,11 @@ function addReaction() {
 		    if (this.readyState == 4 && this.status == 200) {
 
 		        myObj3 = JSON.parse(this.responseText);
+		        // for (x3 in myObj3) {
+		        //     txt3 += myObj3[x3].comment;
+		        // }
+
+		        // document.getElementById("demo").innerHTML = txt3;
 
 		    }
 
@@ -275,18 +317,13 @@ function addReaction() {
 
 var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
 
-//openComments functie voor het ophalen van de reacties
-//die op de foto is gemaakt 
 function openComments() {
-	//krijg de id van de hidden input in de modal 
-	//krijg alle mogelijke data uit de id waaronder
-	//data-id value en data-reaction 
+
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var getMyPhotoId4 = getMyPhotoId.getAttribute('data-reaction');
 
-	//standaard ajax code 
 	obj4 = { "myTable":"addreaction", "myRow":parseInt(getMyPhotoId3) };
 	dbParam4 = JSON.stringify(obj4);
 	xmlhttp4 = new XMLHttpRequest();
@@ -295,7 +332,7 @@ function openComments() {
 		if (this.readyState == 4 && this.status == 200) {
 			myObj4 = JSON.parse(this.responseText);
 			for (x4 in myObj4) {
-				txt4 += myObj4[x4].comment + "<br>";
+				txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
 			}
 			document.getElementById("demo").innerHTML = txt4;
 		}
@@ -306,18 +343,15 @@ function openComments() {
 
 }
 
-//het uitvoeren van een functie 
-//tijdens het openen van de modal 
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function() {
 		openComments();
 	});
 });
 
-//het herladen van de pagina nadat de pagina is gesloten 
 $(document).ready(function() {
 	$('#my_modal').on('hide.bs.modal', function() {
 		location.reload();
+		
 	});
 });
-

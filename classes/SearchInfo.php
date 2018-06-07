@@ -50,22 +50,6 @@
 			 
 		}
 
-		public function sLink($photo_id) {
-
-			$sql = "SELECT users.username username,
-						   upload_images.user_id user_id
-					FROM   upload_images
-					INNER JOIN users
-					ON upload_images.user_id = users.user_id
-					WHERE upload_images.id = ".$this->mysqli->real_escape_string($photo_id)."
-				   ";
-
-			$result = $this->mysqli->query($sql);
-
-			return $result;		
-
-		}
-
 	}
 	
 ?>
