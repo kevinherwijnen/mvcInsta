@@ -4,9 +4,6 @@ session_start();
 
 try {
 
-	$upload= new Upload();
-	$aboutUs=new Userclass();
-	$aboutUs->session_check($_SESSION['email']);
 
 	$upload = new Upload();
 	$aboutUs = new Userclass();
@@ -110,7 +107,7 @@ if (isset($_POST['submitdel'])) {
 			while($row = $test->fetch_assoc()) {
 				$ReactCheck2 = $ReactCheck->UserReactCheck($row['id']);
  			 $id++;
-		?>        
+		?>       
 			<div class=' col-md-3 <?php echo $id ?> div-home ' style="height: 300px;margin-bottom: -10px;margin-top: -10px;">
 
 				<label style="position: relative;margin-left: 9px;top: 43px;background-color: #6f0104; color: white; padding: 0px 5px 0px 5px;border: 2.5px solid brown;" >
