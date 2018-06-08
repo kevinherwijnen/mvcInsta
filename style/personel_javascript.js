@@ -52,7 +52,7 @@ $(document).ready(function(){
 
 		$('#userPost').attr('user-post', userPost);
 
-		$('#userPost').attr('href', "http://localhost/GitHub/mvcInsta/search-info?id=" + userPostId);
+		$('#userPost').attr('href', "search-info?id=" + userPostId);
 
 		$('#userPost').text(userPost);
 	});
