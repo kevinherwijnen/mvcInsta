@@ -113,7 +113,12 @@ if (isset($_POST['submitdel'])) {
 		?>        
 			<div class=' col-md-3 <?php echo $id ?> div-home ' style="height: 300px;margin-bottom: -10px;margin-top: -10px;">
 
-				<input class="checker" type="checkbox" value="<?php echo $row['photo_d'];?>" name="checkbox[]" style="position: relative;margin-left: 10px;top: 30px;" />
+				<label style="position: relative;margin-left: 9px;top: 43px;background-color: #6f0104; color: white; padding: 0px 5px 0px 5px;border: 2.5px solid brown;" >
+	<input class="checker" type="checkbox" value="<?php echo $row['photo_d'];?>" name="checkbox[]" style="padding"  />
+				 <p style="float: right;padding-bottom: -5px;margin-bottom: -5px;margin-top: 2px;"> 
+				 	<?php echo $upload->showLikes($row['photo_d']) ?> 
+				 </p>
+				</label>
 				<img class ="img-responsive img-home img-style borders"    
 					 alt="<?php echo $row['photo_description'] ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
