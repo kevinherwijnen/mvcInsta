@@ -170,12 +170,7 @@ if (isset($_POST['submitdel'])) {
 				<div style="float: right;">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
 
-				<div style="float: right;margin-right: 8px;">
-				<form action="" method="POST"	enctype="multipart/form-data">
-						<input type="hidden" data-input="false" data-classIcon="icon-plus"  name="route" id="routeLoc" value="">
-						<input id="" type="submit" class="btn btn-success" value="Delete the post" name="submitdel" >
-					</form>
-				</div>
+				
 				</div>
 			</div>
 			</div>
