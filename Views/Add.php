@@ -18,7 +18,11 @@
 		$location = "";// extra location where to image goes (map structure) if empty goes to first/ standard location
 		$locationdb = "";// extra location where to image goes (database)if empty goes to first/ standard location
 
-		$temp->upload_Image($_FILES['fileToUpload'], $_POST['description'], $location,$locationdb);
+		if($_POST['description'] >= 100) {
+			echo "<h4 style='color: white;'>jij hebt je letter limiet van 100 letters overschreden</h4>";
+		} else {
+			$temp->upload_Image($_FILES['fileToUpload'], $_POST['description'], $location,$locationdb);
+		}
 	}
 ?>
 

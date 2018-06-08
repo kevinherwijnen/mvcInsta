@@ -176,15 +176,6 @@ $result = $searchInfo->sInfo();
 			<?php
 		}
 		?></div>
-
-
-
-	
-
-
-
-
-
 	<?php
 		}
 		?>
