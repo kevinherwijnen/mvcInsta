@@ -163,7 +163,7 @@ $SearchInfo = new SearchInfo();
 				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
 					<span aria-hidden="true" style="color:black;">&times;</span>
 				</button>
-				<h4 class="modal-title"><a style="cursor: pointer" id="userPost"></a> </h4>
+				<h4 class="modal-title"><a style="cursor: pointer" id="userPost"></a></h4>
 			</div>
 			<div class="col-md-12 ">
 				<div class=' col-md-6  div-home-model padding-t-b-1'>
@@ -177,8 +177,8 @@ $SearchInfo = new SearchInfo();
 			<input type="hidden" id="getMyPhotoId">
 			<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
 			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button>
-			<div style="height: 50%;margin-top: : 24px;">
-			<p style="color: white;" id="demo2"><hr style='width:50%;border-top: 2.3px solid #ca1616;float: unset;'></p>
+			<div style="height: 50%; margin-top: : 24px;">
+			<p style="color: white;" id="demo2"><hr style='width:50%; border-top: 2.3px solid #ca1616;float: unset;'></p>
 			<p style="color: white;color: white;height: 310px;overflow: auto;" id="demo" ></p>
 			</div>
 			</div>
