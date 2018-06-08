@@ -170,9 +170,9 @@ $ReactCheck = new ReactCheck();
 			<input type="hidden" id="getMyPhotoId">
 			<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
 			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button>
-			<div style="height: 50%;">
-			<p style="color: white;" id="demo2"></p>
-			<p style="color: white;color: white;height: 310px;overflow: auto;padding-top: 20px;" id="demo" ></p>
+			<div style="height: 50%;margin-top: 25px;">
+			<p style="color: white;" id="demo2"><hr style='width:50%;border-top: 2.3px solid #ca1616;float: unset;'></p>
+			<p style="color: white;color: white;height: 310px;overflow: auto;" id="demo" ></p>
 			</div>
 			</div>
 			<div class="modal-footer">
