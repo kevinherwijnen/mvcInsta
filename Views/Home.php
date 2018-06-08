@@ -153,6 +153,8 @@ $SearchInfo = new SearchInfo();
 </div>
 
 
+
+
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
 		<div class="container-fluid modal-content model-background borders">
@@ -161,7 +163,7 @@ $SearchInfo = new SearchInfo();
 				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
 					<span aria-hidden="true" style="color:black;">&times;</span>
 				</button>
-				<h4 class="modal-title"><a style="cursor: pointer" id="userPost"></a></h4>
+				<h4 class="modal-title">Modal header</h4>
 			</div>
 			<div class="col-md-12 ">
 				<div class=' col-md-6  div-home-model padding-t-b-1'>
@@ -171,11 +173,14 @@ $SearchInfo = new SearchInfo();
 					<span></span>
 				</div>
 				<span>Voeg reactie toe:</span><br>
-				<p style="color: white;" id="demo2"></p>
-				<input type="hidden" id="getMyPhotoId">
-				<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
-				<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button><br>
-				<p style="color: white;" id="demo"></p>
+			
+			<input type="hidden" id="getMyPhotoId">
+			<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
+			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button>
+			<div style="height: 50%;">
+			<p style="color: white;" id="demo2"></p>
+			<p style="color: white;color: white;height: 310px;overflow: auto;padding-top: 20px;" id="demo" ></p>
+			</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
