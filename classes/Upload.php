@@ -165,21 +165,6 @@ public function delAllImg() {
 	}
 }
 
-public function showLikes($photo_d) {
-		$sql = "SELECT like_counter FROM `upload_images` WHERE `photo_d` = '$photo_d' ";
-
-				$result = $this->mysqli->query($sql);
-				// $row = $result->fetch_row();
-				
-				// //var_dump($row);
-
-				while($like = $result->fetch_assoc()) {
-					echo " &nbsp " . $like['like_counter'] . " likes";
-				}
-		    
-	}
-
-
 
 }
 

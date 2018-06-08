@@ -20,7 +20,7 @@ $searchInfo = new SearchInfo();
 
 $result = $searchInfo->sInfo(); 
 
-$result2 = $searchInfo->sInfoPhoto();
+// $result2 = $searchInfo->sInfoPhoto();
 ?>
 
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
@@ -32,6 +32,8 @@ $result2 = $searchInfo->sInfoPhoto();
 	</ul>
 </div>
 </nav>
+
+<?php if ($result[3] != "") { ?>
 
 <div class="container-fluid">
 	<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
@@ -47,14 +49,26 @@ $result2 = $searchInfo->sInfoPhoto();
 
 </div>
 
+<?php } else { ?>
+
+<div class="container-fluid">
+	<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
+		<img id='myImg'  href="#myModal1" 
+		data-toggle="modal" class="img-responsive img-home img-style borders" 
+		src='uploads/upload-empty.png' alt='deze gebruiker heeft geen profiel foto' style=' width: 100%; height:100%;' height='250'  data-route-id="uploads/upload-empty.png"/>
+	</div>
+	<div class="col-md-9 bio-view borders mobile_margin " style="margin-top: 5px;background-color: #993e3d;">
+		<div class="" style="width:100%;height:100%;">
+			<b style="color:white; ">deze gebruiker heeft geen profiel descriptie</b>
+		</div>
+	</div>
+
+</div>
+
+<?php } ?>
 
 
-
-
-
-
-
-<hr> 
+<hr style="margin-bottom: 20px;"> 
 
 <div class="container-fluid">
 	<div class="col-md-12 ">
@@ -80,7 +94,6 @@ $result2 = $searchInfo->sInfoPhoto();
 			?>
 
 			<div class=' col-md-2  div-home '>
-
 
 				<img class='img-responsive img-home img-style borders'  
 				id='myImg'  
@@ -144,6 +157,7 @@ $result2 = $searchInfo->sInfoPhoto();
 					}
 				}
 				?>
+			</div>
 			<?php
 			} else {
 				?>
@@ -161,7 +175,7 @@ $result2 = $searchInfo->sInfoPhoto();
 			</button>
 			<?php
 		}
-		?></div></div>
+		?></div>
 
 
 
@@ -182,7 +196,6 @@ $result2 = $searchInfo->sInfoPhoto();
 
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
-
 		<div class="container-fluid modal-content model-background borders">
 			<div class="modal-header">
 				<button class="close" type="hidden"></button>
@@ -198,14 +211,11 @@ $result2 = $searchInfo->sInfoPhoto();
 				<span></span>
 			</div>
 			<span>Voeg reactie toe:</span><br>
-			
+			<p style="color: white;" id="demo2"></p>
 			<input type="hidden" id="getMyPhotoId">
 			<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
-			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button>
-			<div style="height: 50%;">
-			<p style="color: white;" id="demo2"></p>
-			<p style="color: white;color: white;height: 310px;overflow: auto;padding-top: 20px;" id="demo" ></p>
-			</div>
+			<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>Comment</button><br>
+			<p style="color: white;" id="demo"></p>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
