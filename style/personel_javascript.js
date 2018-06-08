@@ -230,29 +230,19 @@ var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
 //addreaction functie voegt een reactie toe aan de database 
 function addReaction() {
-	//krijg het id van de hidden input in de modal 
-	var getMyPhotoId = document.getElementById('getMyPhotoId');
 
-	//krijg de data-id en de value van de hidden input id in de modal
+	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
-
-	//krijg het id van de input reactions 
-	//en vraag daarbij ook de value ervan op 
 	var myReaction = document.getElementById('Reactions');
 	var getMyReaction = myReaction.value;
-
-	//krijg de id van de demo2 P tag 
-	//en zet de html naar de momentele text die je net heb getypt 
 	var demo2 = document.getElementById('demo2');
 	demo2.innerHTML = getMyReaction;
 
-	//if statement voor als er niks in de input is ingevuld 
 	if(getMyReaction == "") {
 		alert("it seems that you have not commited anything");
 	} else {
 
-		//standaard ajax code 
 		obj3 = { "table":"addreaction", "row":parseInt(getMyPhotoId2), "row2":parseInt(getMyPhotoId3), "row3":String(getMyReaction) };
 		dbParam3 = JSON.stringify(obj3);
 		xmlhttp3 = new XMLHttpRequest();
@@ -262,6 +252,11 @@ function addReaction() {
 		    if (this.readyState == 4 && this.status == 200) {
 
 		        myObj3 = JSON.parse(this.responseText);
+		        // for (x3 in myObj3) {
+		        //     txt3 += myObj3[x3].comment;
+		        // }
+
+		        // document.getElementById("demo").innerHTML = txt3;
 
 		    }
 
@@ -275,18 +270,13 @@ function addReaction() {
 
 var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
 
-//openComments functie voor het ophalen van de reacties
-//die op de foto is gemaakt 
 function openComments() {
-	//krijg de id van de hidden input in de modal 
-	//krijg alle mogelijke data uit de id waaronder
-	//data-id value en data-reaction 
+
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var getMyPhotoId4 = getMyPhotoId.getAttribute('data-reaction');
 
-	//standaard ajax code 
 	obj4 = { "myTable":"addreaction", "myRow":parseInt(getMyPhotoId3) };
 	dbParam4 = JSON.stringify(obj4);
 	xmlhttp4 = new XMLHttpRequest();
@@ -295,7 +285,7 @@ function openComments() {
 		if (this.readyState == 4 && this.status == 200) {
 			myObj4 = JSON.parse(this.responseText);
 			for (x4 in myObj4) {
-				txt4 += myObj4[x4].comment + "<br>";
+				txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
 			}
 			document.getElementById("demo").innerHTML = txt4;
 		}
