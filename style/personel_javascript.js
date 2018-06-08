@@ -285,7 +285,7 @@ function openComments() {
 		if (this.readyState == 4 && this.status == 200) {
 			myObj4 = JSON.parse(this.responseText);
 			for (x4 in myObj4) {
-				txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+				txt4 += myObj4[x4].comment + '<hr style="width:100%;border-top: 2.3px solid #ca1616;margin-top: 0px;padding-top: 15px;padding-bottom: 15px; margin-top: 15px;margin-bottom; 15px;">';
 			}
 			document.getElementById("demo").innerHTML = txt4;
 		}
