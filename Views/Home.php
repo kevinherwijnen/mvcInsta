@@ -79,71 +79,24 @@ $SearchInfo = new SearchInfo();
 
 				>
 
+				
+						
 				<div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
-
-					<?php 
-					$my_count = mysqli_num_rows($LikeSession2);
-					if ($my_count >= 1) {
-						while ($row2 = $LikeSession2->fetch_assoc()) {
-
-							if ($row2['Active'] == 0) {
-
-								?>
 								<button 
-								id="myLike" 
+								id= "image-<?php echo $row['id']; ?>"
 								type="submit" 
-								class="btn-success btn-block" 
-								name="insertLike" 
-								data-value="<?php echo $row['id']; ?>" 
+								class= btn-block" 
+								name="insertLike"  
 								data-id="<?php echo $_SESSION['user_id']; ?>" 
+								data-value="<?php echo $row['id']; ?>" 
 								onclick="setGetLike(this);" 
 								style="padding: 10px; border-radius: 5px;" 
-								value="<?php echo $row['like_counter']; ?>"
+								value=""
 								>
-								<?php echo $row['like_counter']; ?> like(s)
+							<?php  $get_p->showUserLikes($row['id']) ;?> like(s)
 							</button>
-
-							<?php
-						} else if ($row2['Active'] == 1) {				
-							?>
-
-							<button 
-							id="myLike2" 
-							type="submit" 
-							class="btn-danger btn-block" 
-							name="insertLike2" 
-							data-value="<?php echo $row['id']; ?>" 
-							data-id="<?php echo $_SESSION['user_id']; ?>" 
-							onclick="setGetDislike(this);" 
-							style="padding: 10px; border-radius: 5px;" 
-							value="<?php echo $row['like_counter']; ?>"
-							>
-							<?php echo $row['like_counter']; ?> like(s)
-						</button>  
-
-						<?php
-					}
-				}
-			} else {
-				?>
-				<button 
-				id="myLike" 
-				type="submit" 
-				class="btn-success btn-block" 
-				name="insertLike" 
-				data-value="<?php echo $row['id']; ?>" 
-				data-id="<?php echo $_SESSION['user_id']; ?>" 
-				onclick="setGetLike(this);" 
-				style="padding: 10px; border-radius: 5px;" 
-				value="<?php echo $row['like_counter']; ?>"> 
-				<?php echo $row['like_counter']; ?> like(s)
-			</button>
-			<?php
-		}
-		?></div>
-
-
-
+					</div>
+				
 	</div>
 	<?php 
 } 
@@ -163,7 +116,7 @@ $SearchInfo = new SearchInfo();
 				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
 					<span aria-hidden="true" style="color:black;">&times;</span>
 				</button>
-				<h4 class="modal-title">Gepost door: <br>@<a onmouseover="style='cursor: pointer; color: blue; font-weight: bold; text-decoration:none;'" style="cursor: pointer; color: white;" onmouseleave="style='cursor: pointer; color: white; text-decoration:none;'" id="userPost"></a></p></h4>
+				<h4 class="modal-title">Gepost door: <br>@<a onmouseover="style='cursor: pointer; color: light-blue; font-weight: bold; text-decoration:none;'" style="cursor: pointer; color: white;" onmouseleave="style='cursor: pointer; color: white; text-decoration:none;'" id="userPost"></a></p></h4>
 			</div>
 			<div class="col-md-12 ">
 				<div class=' col-md-6  div-home-model padding-t-b-1'>

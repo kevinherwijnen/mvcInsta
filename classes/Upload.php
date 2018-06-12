@@ -170,15 +170,25 @@ public function showLikes($photo_d) {
 		$sql = "SELECT like_counter FROM `upload_images` WHERE `photo_d` = '$photo_d' ";
 
 				$result = $this->mysqli->query($sql);
-				// $row = $result->fetch_row();
-				
-				// //var_dump($row);
+			
 
 				while($like = $result->fetch_assoc()) {
 					echo " &nbsp " . $like['like_counter'] . " likes";
 				}
 		    
 	}
+
+		public function showUserLikes ($photo_id){
+				$sql = "SELECT COUNT(*) FROM photo_liked WHERE `user_id` = ". $_SESSION['user_id'] ." AND `photo_id` = ".$photo_id." 
+				AND `Active` = 1";
+
+			$result2 = $this->mysqli->query($sql);
+			 $likes = $result2->fetch_all(MYSQLI_ASSOC);
+
+			 echo $likes[0]['COUNT(*)']; 
+
+		}
+
 
 
 }

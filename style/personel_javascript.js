@@ -118,7 +118,7 @@ function setGetLike(element) {
 	//het object wordt samengeperst tot een tekst door JSON.stringify
 	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
 
-	obj = { "table":"like_counter", "limit":10, "user_id":getUserId, "photo_id":getLikeId };
+	obj = { "photo_id":getLikeId };
 	dbParam = JSON.stringify(obj);
 	xmlhttp = new XMLHttpRequest();
 
@@ -151,7 +151,7 @@ function setGetLike(element) {
 
 	// location.reload();
 	// window.location.reload();
-	setTimeout(location.reload.bind(location), 25);
+	// setTimeout(location.reload.bind(location), 25);
 	
 }
 
@@ -159,72 +159,7 @@ function setGetLike(element) {
 
 var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
 
-function setGetDislike(element2) {
-	getDislike = element2.value;
 
-	//hier word een if statement gedaan
-	//waarbij er word gekeken of het vorige value 
-	//bestaat of niet en als de vorige value wel bestaat
-	//kijkt de if statement of de nieuwe value overeenkomt
-	//met de vorige value en zal de statement plus of min
-	//doen naarmate de actie is gemaakt
-
-	if(element2.getAttribute('previousValue') == undefined){
-		element2.setAttribute('previousValue', getDislike);
-		element2.value = --getDislike;
-		element2.innerHTML = element2.value;
-	} else {
-		if(element2.getAttribute('previousValue') == element2.value){
-			element2.value = --getDislike;
-		} else {
-			element2.value = ++getDislike; }
-			element2.innerHTML = element2.value;
-		}
-
-	var getDislikeId2 = element2.getAttribute('data-value');
-	var getUserId2 = element2.getAttribute('data-id');
-
-	//het maken van een json object
-	//het object wordt samengeperst tot een tekst door JSON.stringify
-	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
-
-	obj2 = { "table":"like_counter", "limit":10, "user_id":getUserId2, "photo_id":getDislikeId2 };
-	dbParam2 = JSON.stringify(obj2);
-	xmlhttp2 = new XMLHttpRequest();
-
-	//onreadystatechange wordt uitgevoerd wanneer
-	//er een verandering is in de XMLHttpRequest
-
-	xmlhttp2.onreadystatechange = function() {
-
-		//this.readyState == 4 && this.status == 200 
-		//is een check om te kijken of je door kan gaan met de functie
-
-	    if (this.readyState == 4 && this.status == 200) {
-
-	    	//hieronder wordt alles automatisch bekeken 
-	    	//gedecode en opgehaald
-
-	        myObj2 = JSON.parse(this.responseText);
-	        // for (x2 in myObj2) {
-	        //     txt2 += myObj2[x2].like_counter + "<br>";
-	        // }
-	        // document.getElementById("demo").innerHTML = txt2;
-	    }
-
-	};
-
-	//hieronder wordt alles geopend
-	//gevraagd wat voor type er moet worden doorgestuurd
-	//en welke variable er precies wordt doorgestuurd
-
-	xmlhttp2.open("POST", "Ajax/deleteLikes.php", true);
-	xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp2.send("x=" + dbParam2);
-
-	setTimeout(location.reload.bind(location), 25);
-
-}
 
 var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
@@ -265,29 +200,40 @@ function addReaction() {
 		xmlhttp3.open("POST", "Ajax/addReactions.php", true);
 		xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp3.send("x=" + dbParam3);
+		myReaction.value = "";
 	}
 }
 
 var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
 
 function openComments() {
-
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var getMyPhotoId4 = getMyPhotoId.getAttribute('data-reaction');
+	var previousValue;
 
 	obj4 = { "myTable":"addreaction", "myRow":parseInt(getMyPhotoId3) };
 	dbParam4 = JSON.stringify(obj4);
 	xmlhttp4 = new XMLHttpRequest();
 
 	xmlhttp4.onreadystatechange = function() {
+		// kijken of object geset is
 		if (this.readyState == 4 && this.status == 200) {
 			myObj4 = JSON.parse(this.responseText);
-			for (x4 in myObj4) {
-				txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+			if(previousValue == myObj4) {
+
+			} else {
+				document.getElementById("demo").innerHTML = "";
+				previousValue = myObj4;
+
+				for (x4 in myObj4) {
+					txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+				}
+			
+				document.getElementById("demo").innerHTML = txt4;
+				txt4 = "";
 			}
-			document.getElementById("demo").innerHTML = txt4;
 		}
 	}
 
@@ -301,13 +247,36 @@ function openComments() {
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function() {
 		openComments();
+		reIndentComments = setInterval(openComments, 5000);
 	});
 });
 
 //het herladen van de pagina nadat de pagina is gesloten 
 $(document).ready(function() {
 	$('#my_modal').on('hide.bs.modal', function() {
-		location.reload();
+		clearInterval(reIndentComments);
 	});
 });
 
+// likes . robin legt het wel uit
+function getAllLikes()
+{
+
+	$.ajax({url: "Ajax/openAllLikes.php", success: function(result){
+	
+       	$.each( result, function( key, value ) {   
+  				$('#image-' + key).val(value);
+  				$('#image-' + key).html(value + ' like(s)');
+  				console.log(key + " " + value);
+  				
+			});
+    }});
+
+}
+
+
+$(document).ready(function(){
+
+	// setInterval(getAllLikes, 20000);
+
+});
