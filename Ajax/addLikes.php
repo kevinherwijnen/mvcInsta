@@ -19,8 +19,6 @@ $sql = "SELECT Active
 
 $result2 = $conn->query($sql);
 
-
-
 $count_row = mysqli_num_rows($result2);
 
 
@@ -32,12 +30,19 @@ if ($count_row >= 1) {
 	$result3 = $conn->query("INSERT INTO photo_liked (user_id, photo_id, Active) VALUES (".$_SESSION['user_id'].", ".$obj->photo_id.", 1)");
 }
 
+$sql2 = $conn->query("SELECT Active
+		FROM photo_liked 
+		WHERE user_id = ".$_SESSION['user_id']."
+		AND photo_id = ".$obj->photo_id."
+	   ");
 
+$outp = array();
 
+$outp = $sql2->fetch_all(MYSQLI_ASSOC);
 
 
 // returnen hoeveel likes er op deze foto zijn.
-// echo json_encode('');
+echo json_encode($outp);
 
 ?>
 

@@ -143,36 +143,38 @@ if (isset($_POST['submitdel'])) {
 
 <div class=" modal" id="my_modal">
 	<div class="modal-dialog" style="width:80%;">
+
 		<div class="container-fluid modal-content model-background borders">
 			<div class="modal-header">
 				<button class="close" type="hidden"></button>
 				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
 					<span aria-hidden="true" style="color:black;">&times;</span>
 				</button>
-				<h4 class="modal-title"><a style="cursor: pointer" id="userPost"></a></h4>
+				<h4 class="modal-title">Modal header</h4>
 			</div>
-			<div class="çontainer-fluid">
-			<div class="col-md-12 ">
-				<div class=' col-md-6  div-home-model padding-t-b-1'>
-					<img id="myImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
-				</div>
-				<div class="col-md-6 padding-t-b-1" id="Description" style="height: 210px;">
-					<span></span>
-				</div>
-				<div class="col-md-6 padding-t-b-1" id="Description" style="height:100%;">
+				<div class="col-md-12 ">
+					<div class=' col-md-6  div-home-model padding-t-b-1'>
+						<img id="myImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
+					</div>
+					<div class="col-md-6 padding-t-b-1" id="Description">
+				       <span></span>
+					</div>
 					<input type="hidden" id="getMyPhotoId">
-					<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
-					<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>		Voeg reactie toe
-					</button>
-				<div style="">
-					<p style="color: white;margin-top: 15px;border-bottom: 2.3px solid #ca1616;width: 96.5%;padding-bottom: 12px;margin-bottom:20px" id="demo2"></p>
-					<p style="color: white;color: white;height: 190px;overflow: auto;" id="demo" ></p>
 				</div>
-			</div>
+			<div class="modal-footer">
+				<div class="col-md-12 ">
+					<div class="col-md-6 " style="text-align: middle">
+						<!-- hier komt het like systeem -->
+					</div>
+					<div class="col-md-6 ">
+				<div style="float: right;">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+
+				
+				</div>
 			</div>
 			</div>
 		</div>
-		
 	</div>
 </div>
 

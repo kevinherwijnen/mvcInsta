@@ -109,10 +109,7 @@ function setGetLike(element) {
 		}
 
 	var getLikeId = element.getAttribute('data-value');
-	var getUserId = element.getAttribute('data-id');
-
-	console.log(getUserId);
-
+	var previousValue;
 
 	//het maken van een json object
 	//het object wordt samengeperst tot een tekst door JSON.stringify
@@ -136,6 +133,21 @@ function setGetLike(element) {
 	    	//gedecode en opgehaald
 
 	        myObj = JSON.parse(this.responseText);
+	        for (x in myObj) {
+	            txt += myObj[x].Active;
+	            if (txt == 1) {
+	            	console.log("groen");
+	            	element.classList.add('btn-success');
+	            	element.classList.remove('btn-danger');
+	            } else {
+	            	console.log("rood");
+					element.classList.add('btn-danger');
+					element.classList.remove('btn-success');
+	            	txt = "";
+	            }
+	        }
+
+	        // console.log(txt);
 
 	    }
 
@@ -155,12 +167,6 @@ function setGetLike(element) {
 	
 }
 
-
-
-var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
-
-
-
 var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 
 //addreaction functie voegt een reactie toe aan de database 
@@ -172,7 +178,6 @@ function addReaction() {
 	var myReaction = document.getElementById('Reactions');
 	var getMyReaction = myReaction.value;
 	var demo2 = document.getElementById('demo2');
-	demo2.innerHTML = getMyReaction;
 
 	if(getMyReaction == "") {
 		alert("it seems that you have not commited anything");
@@ -233,8 +238,6 @@ function openComments() {
 			
 				document.getElementById("demo").innerHTML = txt4;
 				txt4 = "";
-			for (x4 in myObj4) {
-				txt4 += myObj4[x4].comment + '<hr style="width:100%;border-top: 2.3px solid #ca1616;margin-top: 0px;padding-top: 15px;padding-bottom: 15px; margin-top: 15px;margin-bottom; 15px;">';
 			}
 		}
 	}
@@ -249,7 +252,7 @@ function openComments() {
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function() {
 		openComments();
-		reIndentComments = setInterval(openComments, 5000);
+		reIndentComments = setInterval(openComments, 2000);
 	});
 });
 
@@ -269,7 +272,6 @@ function getAllLikes()
        	$.each( result, function( key, value ) {   
   				$('#image-' + key).val(value);
   				$('#image-' + key).html(value + ' like(s)');
-  				console.log(key + " " + value);
   				
 			});
     }});
@@ -279,6 +281,6 @@ function getAllLikes()
 
 $(document).ready(function(){
 
-	// setInterval(getAllLikes, 20000);
+	setInterval(getAllLikes, 2000);
 
 });
