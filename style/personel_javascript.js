@@ -279,23 +279,15 @@ function getAllLikes()
 	$.ajax({url: "Ajax/openAllLikes.php", success: function(result){
 	
        	$.each( result, function( key, value ) {   
-  				$('#image-' + key).val(value);
-  				$('#image-' + key).html(value + ' like(s)');
-			});
+			$('#image-' + key).val(value);
+			$('#image-' + key).html(value + ' like(s)');
+		});
     }});
 
 }
 
-function getAllActive() {
-	$.ajax({url: "Ajax/addLikes.php", success: function(result){
-		
-	}}); 
-}
-
-
 $(document).ready(function(){
 
 	setInterval(getAllLikes, 1000);
-	setInterval(getAllActive, 2000);
 
 });
