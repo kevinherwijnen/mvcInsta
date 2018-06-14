@@ -99,14 +99,15 @@ function setGetLike(element) {
 	if(element.getAttribute('previousValue') == undefined){
 		element.setAttribute('previousValue', getLike);
 		element.value = ++getLike;
-		element.innerHTML = element.value;
+		element.innerHTML = element.value + "like (s)";
 	} else {
 		if(element.getAttribute('previousValue') == element.value){
 			element.value = ++getLike;
 		} else {
-			element.value = --getLike; }
-			element.innerHTML = element.value;
+			element.value = --getLike; 
 		}
+		element.innerHTML = element.value + "like (s)";
+	}
 
 	var getLikeId = element.getAttribute('data-value');
 	var previousValue;
@@ -133,19 +134,27 @@ function setGetLike(element) {
 	    	//gedecode en opgehaald
 
 	        myObj = JSON.parse(this.responseText);
-	        for (x in myObj) {
-	            txt += myObj[x].Active;
-	            if (txt == 1) {
-	            	console.log("groen");
-	            	element.classList.add('btn-success');
-	            	element.classList.remove('btn-danger');
-	            } else {
-	            	console.log("rood");
+	        if(previousValue == myObj) {
+
+			} else {
+				previousValue = myObj;
+				element.classList.add('btn-success');
+				element.classList.remove('btn-danger');
+
+				for (x in myObj) {
+					txt += myObj[x].Active;
+				}
+
+				if (txt == 1) {
 					element.classList.add('btn-danger');
 					element.classList.remove('btn-success');
-	            	txt = "";
-	            }
-	        }
+				} else {
+					element.classList.add('btn-success');
+					element.classList.remove('btn-danger');
+				}
+
+				txt = "";
+			}
 
 	        // console.log(txt);
 
@@ -272,15 +281,21 @@ function getAllLikes()
        	$.each( result, function( key, value ) {   
   				$('#image-' + key).val(value);
   				$('#image-' + key).html(value + ' like(s)');
-  				
 			});
     }});
 
 }
 
+function getAllActive() {
+	$.ajax({url: "Ajax/addLikes.php", success: function(result){
+		
+	}}); 
+}
+
 
 $(document).ready(function(){
 
-	setInterval(getAllLikes, 2000);
+	setInterval(getAllLikes, 1000);
+	setInterval(getAllActive, 2000);
 
 });
