@@ -46,8 +46,8 @@
 
 	<div class="col-md-10 col-md-offset-1 ">
 		<form action="" method="POST"	enctype="multipart/form-data">
-			<div class="col-md-3" >
-				<img id="myImg"  href="#myModal" data-toggle="modal" src="uploads\upload-empty.png" alt="your image" style="width: 100%;" height="209" />
+			<div class="col-md-3" style="height:248px; margin-bottom: 10px; ">
+				<img id="myImg"  href="#myModal" class="img-responsive img-home img-style borders"  data-toggle="modal" src="uploads\upload-empty.png" alt="your image" style="width: 100%;" height="237" />
 
 			</div>
 			<div class="col-md-9 ">
