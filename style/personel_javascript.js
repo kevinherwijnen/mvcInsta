@@ -1,13 +1,4 @@
-//zorgt er voor dat je select file van upload niet ziet 
-$(function () {
-	$('input[type="file"]').change(function () {
-		if ($(this).val() != "") {
-			$(this).css('color', '#333');
-		}else{
-			$(this).css('color', 'transparent');
-		}
-	});
-})
+
 
 // preview image upload bij add image
 function readURL(input) {
@@ -16,6 +7,10 @@ function readURL(input) {
 		reader.onload = function (e) {
 			$('#myImg')
 			.attr('src', e.target.result)
+			$('#myImg')
+			.attr('data-route-id-add', e.target.result)
+			
+
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
@@ -25,6 +20,7 @@ function readURL(input) {
 //om de foto in de modal te open heb je dit stukje nodig die de route van de image toestuurt
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function(e) {
+		var RouteIdAdd = $(e.relatedTarget).data('data-route-id-add');
 		var RouteId = $(e.relatedTarget).data('route-id');
 		var DescriptionId = $(e.relatedTarget).data('description-id');
 		var photoId = $(e.relatedTarget).data('photo-id');
@@ -32,6 +28,8 @@ $(document).ready(function(){
 		var commentId = $(e.relatedTarget).data('reaction');
 		var userPost = $(e.relatedTarget).data('user-post');
 		var userPostId = $(e.relatedTarget).data('user-post-id');
+		$('#img01').attr('src', RouteIdAdd);
+
 		$('#myImage').attr('src', RouteId);
 
 		$('#Description span').text(DescriptionId);
@@ -65,6 +63,14 @@ $(document).ready(function(){
 	});
 });
 
+$(document).ready(function(){
+	$('#myModal').on('show.bs.modal', function(e) {
+		var RouteId = $(e.relatedTarget).data('route-id-add');
+		$('#img01').attr('src', RouteId);
+
+	});
+});
+
 
 //krijg de momentele scroll hoogte van de pagina 
 //en blijf op de hoogte staan tijdens het herladen van de pagina 
@@ -90,6 +96,7 @@ if(element.getAttribute('previousValue') == undefined){
 	element.setAttribute('previousValue', getLike);
 	element.value = ++getLike;
 //element.innerHTML = element.value + "like (s)";
+
 getAllLikes();
 } else {
 	if(element.getAttribute('previousValue') == element.value){
