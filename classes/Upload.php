@@ -189,6 +189,18 @@ public function showLikes($photo_d) {
 
 		}
 
+	public function checkActive($photo_id) {
+		$sql = "SELECT Active
+				FROM photo_liked
+				WHERE user_id = ".$_SESSION['user_id']."
+				AND photo_id = ".$photo_id." 
+			   ";
+							  
+		$result = $this->mysqli->query($sql);
+
+		return $result;
+	}
+
 
 
 }

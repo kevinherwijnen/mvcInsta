@@ -89,13 +89,11 @@ $result = $searchInfo->sInfo();
 			$LikeSession2 = $LikeSession->ActiveCheck($row2['id']);
 			while($row3 = $fotos->fetch_assoc()) {
 				$ReactCheck2 = $ReactCheck->UserReactCheck($row3['id']);
-				
-;			}
+			}
 			$id++;
 			?>
 
 			<div class=' col-md-2  div-home '>
-
 
 				<img class='img-responsive img-home img-style borders'  
 				id='myImg'  
@@ -109,28 +107,77 @@ $result = $searchInfo->sInfo();
 				data-description-id='<?php echo $row2['photo_description']; ?>'
 				data-photo-id='<?php echo $row2['id']; ?>'
 				data-id='<?php echo $_SESSION['user_id']; ?>'
-				/>					
-				
+				<?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
+					data-reaction="<?php echo $row3000['comment']; ?>"
+				<?php } ?>
+
+				/>
 				<div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
+				<?php 
+					$my_count = mysqli_num_rows($LikeSession2);
+					if ($my_count >= 1) {
+						while ($row3 = $LikeSession2->fetch_assoc()) {
+
+								if ($row3['Active'] == 0) {
+
+								?>
 								<button 
-								id= "image-<?php echo $row2['id']; ?>"
+								id="myLike" 
 								type="submit" 
-								class="btn-block" 
-								name="insertLike"  
-								data-id="<?php echo $_SESSION['user_id']; ?>" 
+								class="btn-success btn-block" 
+								name="insertLike" 
 								data-value="<?php echo $row2['id']; ?>" 
+								data-id="<?php echo $_SESSION['user_id']; ?>" 
 								onclick="setGetLike(this);" 
-								style="padding: 10px; border-radius: 5px; border-top-right-radius: 0px; border-top-left-radius: 0px;" 
-								value=""
+								style="padding: 10px; border-radius: 5px;" 
+								value="<?php echo $row2['like_counter']; ?>"
 								>
-							<?php  //$get_p->showUserLikes($fotos['id']) ;?> like(s)
+								<?php echo $row2['like_counter']; ?> like(s)
 							</button>
-					</div>
-		
-	</div>
+
+							<?php
+						} else if ($row3['Active'] == 1) {				
+							?>
+
+							<button 
+							id="myLike2" 
+							type="submit" 
+							class="btn-danger btn-block" 
+							name="insertLike2" 
+							data-value="<?php echo $row2['id']; ?>" 
+							data-id="<?php echo $_SESSION['user_id']; ?>" 
+							onclick="setGetDislike(this);" 
+							style="padding: 10px; border-radius: 5px;" 
+							value="<?php echo $row2['like_counter']; ?>"
+							>
+							<?php echo $row2['like_counter']; ?> like(s)
+						</button>  
+
+						<?php
+					}
+				}
+				?>
+			</div>
+			<?php
+			} else {
+				?>
+				<button 
+				id="myLike" 
+				type="submit" 
+				class="btn-success btn-block" 
+				name="insertLike" 
+				data-value="<?php echo $row2['id']; ?>" 
+				data-id="<?php echo $_SESSION['user_id']; ?>" 
+				onclick="setGetLike(this);" 
+				style="padding: 10px; border-radius: 5px;" 
+				value="<?php echo $row2['like_counter']; ?>"> 
+				<?php echo $row2['like_counter']; ?> like(s)
+			</button>
+			<?php
+		}
+		?></div>
 	<?php
-		
-	}
+		}
 		?>
 	</div>
 </div>
@@ -169,7 +216,6 @@ $result = $searchInfo->sInfo();
 			</div>
 		</div>
 	</div>
-</div>
 
 
 

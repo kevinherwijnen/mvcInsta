@@ -46,16 +46,10 @@
 
 	<div class="col-md-10 col-md-offset-1 ">
 		<form action="" method="POST"	enctype="multipart/form-data">
-		<div class="col-md-3 " style="height:211px; margin-bottom: 10px; ">
-			<img 	id='myImg'  
-					href="#myModal" 
-					data-toggle="modal"
-					class="img-responsive img-home img-style borders" 
-			 		src='uploads\upload-empty.png' 
-			 		alt='your image' 
-			 		style=' width: 100%;height:100%;' 
-			 		height='210' />
-		</div>
+			<div class="col-md-3" >
+				<img id="myImg"  href="#myModal" data-toggle="modal" src="uploads\upload-empty.png" alt="your image" style="width: 100%;" height="209" />
+
+			</div>
 			<div class="col-md-9 ">
 				<textarea name="description" rows="9" cols="100" class="form-control" style="height: 210px;margin-top: 5px;background-color: #993e3d; color:white;"></textarea>
 			</div>
@@ -89,7 +83,7 @@
 			</div>
 			<div class="col-md-12 ">
 				<div class=' col-md-10  div-home-model padding-t-b-1'>
-					<img class="modal-content img-responsive" id="img01" src="" style="max-height: 500px;margin-left: auto;margin-right: auto;display: block;"> 
+					<img class="modal-content img-responsive" id="img01" style="max-height: 500px;margin-left: auto;margin-right: auto;display: block;"> 
 				</div>
 			</div>
 			<div class="modal-footer" >
@@ -98,8 +92,6 @@
 		</div>
 	</div>
 	</div>
-
-
 	<script type="text/javascript">
 	    // zorgt er voor dat je de naam kan veranderen van upload image
 	    $(":file").filestyle();

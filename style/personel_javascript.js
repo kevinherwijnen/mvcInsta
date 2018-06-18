@@ -1,13 +1,17 @@
-//zorgt er voor dat je select file van upload niet ziet 
-$(function () {
-	$('input[type="file"]').change(function () {
-		if ($(this).val() != "") {
-			$(this).css('color', '#333');
-		}else{
-			$(this).css('color', 'transparent');
-		}
-	});
-})
+
+
+
+
+	//zorgt er voor dat je select file van upload niet ziet 
+	$(function () {
+		$('input[type="file"]').change(function () {
+			if ($(this).val() != "") {
+				$(this).css('color', '#333');
+			}else{
+				$(this).css('color', 'transparent');
+			}
+		});
+	})
 
 // preview image upload bij add image
 function readURL(input) {
@@ -32,6 +36,7 @@ $(document).ready(function(){
 		var commentId = $(e.relatedTarget).data('reaction');
 		var userPost = $(e.relatedTarget).data('user-post');
 		var userPostId = $(e.relatedTarget).data('user-post-id');
+		
 		$('#myImage').attr('src', RouteId);
 
 		$('#Description span').text(DescriptionId);
@@ -51,6 +56,7 @@ $(document).ready(function(){
 
 		$('#userPost').text(userPost);
 	});
+	
 });
 
 
@@ -58,11 +64,15 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#myModal1').on('show.bs.modal', function(e) {
 		var RouteId = $(e.relatedTarget).data('route-id');
+		
+		
 		$('#myProfileImage').attr('src', RouteId);
 
+		
 
 		$('#myProfileImage').attr('value', "RouteId");
 	});
+	
 });
 
 
@@ -79,92 +89,91 @@ var obj, dbParam, xmlhttp, myObj, x, txt = "";
 function setGetLike(element) {
 	getLike = element.value;
 
-//hier word een if statement gedaan
-//waarbij er word gekeken of het vorige value 
-//bestaat of niet en als de vorige value wel bestaat
-//kijkt de if statement of de nieuwe value overeenkomt
-//met de vorige value en zal de statement plus of min
-//doen naarmate de actie is gemaakt
+	//hier word een if statement gedaan
+	//waarbij er word gekeken of het vorige value 
+	//bestaat of niet en als de vorige value wel bestaat
+	//kijkt de if statement of de nieuwe value overeenkomt
+	//met de vorige value en zal de statement plus of min
+	//doen naarmate de actie is gemaakt
 
-if(element.getAttribute('previousValue') == undefined){
-	element.setAttribute('previousValue', getLike);
-	element.value = ++getLike;
-//element.innerHTML = element.value + "like (s)";
-getAllLikes();
-} else {
-	if(element.getAttribute('previousValue') == element.value){
+	if(element.getAttribute('previousValue') == undefined){
+		element.setAttribute('previousValue', getLike);
 		element.value = ++getLike;
+		element.innerHTML = element.value + "like (s)";
 	} else {
-		element.value = --getLike; 
+		if(element.getAttribute('previousValue') == element.value){
+			element.value = ++getLike;
+		} else {
+			element.value = --getLike; 
+		}
+		element.innerHTML = element.value + "like (s)";
 	}
-//element.innerHTML = element.value + "like (s)";
-getAllLikes();
-}
 
-var getLikeId = element.getAttribute('data-value');
-var previousValue;
+	var getLikeId = element.getAttribute('data-value');
+	var previousValue;
 
-//het maken van een json object
-//het object wordt samengeperst tot een tekst door JSON.stringify
-//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
+	//het maken van een json object
+	//het object wordt samengeperst tot een tekst door JSON.stringify
+	//er wordt een nieuwe XMLHttpRequest aangemaakt op commando
 
-obj = { "photo_id":getLikeId };
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+	obj = { "photo_id":getLikeId };
+	dbParam = JSON.stringify(obj);
+	xmlhttp = new XMLHttpRequest();
 
-//onreadystatechange wordt uitgevoerd wanneer
-//er een verandering is in de XMLHttpRequest
+	//onreadystatechange wordt uitgevoerd wanneer
+	//er een verandering is in de XMLHttpRequest
 
-xmlhttp.onreadystatechange = function() {
+	xmlhttp.onreadystatechange = function() {
 
-//this.readyState == 4 && this.status == 200 
-//is een check om te kijken of je door kan gaan met de functie
+		//this.readyState == 4 && this.status == 200 
+		//is een check om te kijken of je door kan gaan met de functie
 
-if (this.readyState == 4 && this.status == 200) {
+	    if (this.readyState == 4 && this.status == 200) {
 
-    //hieronder wordt alles automatisch bekeken 
-    //gedecode en opgehaald
+	    	//hieronder wordt alles automatisch bekeken 
+	    	//gedecode en opgehaald
 
-    myObj = JSON.parse(this.responseText);
-    if(previousValue == myObj) {
+	        myObj = JSON.parse(this.responseText);
+	        if(previousValue == myObj) {
 
-    } else {
-    	previousValue = myObj;
-    	element.classList.add('btn-success');
-    	element.classList.remove('btn-danger');
+			} else {
+				previousValue = myObj;
+				element.classList.add('btn-success');
+				element.classList.remove('btn-danger');
 
-    	for (x in myObj) {
-    		txt += myObj[x].Active;
-    	}
+				for (x in myObj) {
+					txt += myObj[x].Active;
+				}
 
-    	if (txt == 1) {
-    		element.classList.add('btn-danger');
-    		element.classList.remove('btn-success');
-    	} else {
-    		element.classList.add('btn-success');
-    		element.classList.remove('btn-danger');
-    	}
+				if (txt == 1) {
+					element.classList.add('btn-danger');
+					element.classList.remove('btn-success');
+				} else {
+					element.classList.add('btn-success');
+					element.classList.remove('btn-danger');
+				}
 
-    	txt = "";
-    }
+				txt = "";
+			}
 
-        // console.log(txt);
+	        // console.log(txt);
 
-    }
+	    }
 
-};
+	};
 
-//hieronder wordt alles geopend
-//gevraagd wat voor type er moet worden doorgestuurd
-//en welke variable er precies wordt doorgestuurd
+	//hieronder wordt alles geopend
+	//gevraagd wat voor type er moet worden doorgestuurd
+	//en welke variable er precies wordt doorgestuurd
 
-xmlhttp.open("POST", "Ajax/addLikes.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("x=" + dbParam);
+	xmlhttp.open("POST", "Ajax/addLikes.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("x=" + dbParam);
 
-// location.reload();
-// window.location.reload();
-// setTimeout(location.reload.bind(location), 25);
+	// location.reload();
+	// window.location.reload();
+	// setTimeout(location.reload.bind(location), 25);
+	
 }
 
 var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
@@ -189,24 +198,24 @@ function addReaction() {
 
 		xmlhttp3.onreadystatechange = function() {
 
-			if (this.readyState == 4 && this.status == 200) {
+		    if (this.readyState == 4 && this.status == 200) {
 
-				myObj3 = JSON.parse(this.responseText);
-        // for (x3 in myObj3) {
-        //     txt3 += myObj3[x3].comment;
-        // }
+		        myObj3 = JSON.parse(this.responseText);
+		        // for (x3 in myObj3) {
+		        //     txt3 += myObj3[x3].comment;
+		        // }
 
-        // document.getElementById("demo").innerHTML = txt3;
+		        // document.getElementById("demo").innerHTML = txt3;
 
-    }
+		    }
 
-};
+		};
 
-xmlhttp3.open("POST", "Ajax/addReactions.php", true);
-xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp3.send("x=" + dbParam3);
-myReaction.value = "";
-}
+		xmlhttp3.open("POST", "Ajax/addReactions.php", true);
+		xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp3.send("x=" + dbParam3);
+		myReaction.value = "";
+	}
 }
 
 var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
@@ -223,26 +232,27 @@ function openComments() {
 	xmlhttp4 = new XMLHttpRequest();
 
 	xmlhttp4.onreadystatechange = function() {
-// kijken of object geset is
-if (this.readyState == 4 && this.status == 200) {
-	myObj4 = JSON.parse(this.responseText);
-	if(previousValue == myObj4) {
+		// kijken of object geset is
+		if (this.readyState == 4 && this.status == 200) {
+			myObj4 = JSON.parse(this.responseText);
+			if(previousValue == myObj4) {
 
-	} else {
-		document.getElementById("demo").innerHTML = "";
-		previousValue = myObj4;
+			} else {
+				document.getElementById("demo").innerHTML = "";
+				previousValue = myObj4;
 
-		for (x4 in myObj4) {
-			txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+				for (x4 in myObj4) {
+					txt4 += myObj4[x4].comment + "<hr style='width:100%;border-top: 2.3px solid #ca1616;float: unset;'>";
+				}
+			
+				document.getElementById("demo").innerHTML = txt4;
+				txt4 = "";
+			}
 		}
-		document.getElementById("demo").innerHTML = txt4;
-		txt4 = "";
 	}
-}
-}
 
-xmlhttp4.open("GET", "Ajax/openReactions.php?x=" + dbParam4, true);
-xmlhttp4.send();
+	xmlhttp4.open("GET", "Ajax/openReactions.php?x=" + dbParam4, true);
+	xmlhttp4.send();
 
 }
 
@@ -267,25 +277,17 @@ function getAllLikes()
 {
 
 	$.ajax({url: "Ajax/openAllLikes.php", success: function(result){
-		$.each( result, function( key, value ) {   
+	
+       	$.each( result, function( key, value ) {   
 			$('#image-' + key).val(value);
 			$('#image-' + key).html(value + ' like(s)');
 		});
-	}});
+    }});
 
 }
-
-// function getAllActive() {
-// $.ajax({url: "Ajax/addLikes.php", success: function(result){
-// $.each(result, function(key, value){
-// });
-// }}); 
-// }
-
 
 $(document).ready(function(){
 
 	setInterval(getAllLikes, 1000);
-// setInterval(getAllActive, 2000);
 
 });

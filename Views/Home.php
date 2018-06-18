@@ -18,7 +18,7 @@ try {
 	echo 'Caught exception: ',  $e->getMessage(), "\n";
 }	
 
-$LikeSession = new likeSession();
+// $LikeSession = new likeSession();
 $ReactCheck = new ReactCheck();
 $SearchInfo = new SearchInfo();
 
@@ -46,7 +46,7 @@ $SearchInfo = new SearchInfo();
 			// $id= 0;
 		while($row = $fotos->fetch_assoc()) {
 
-			$LikeSession2 = $LikeSession->ActiveCheck($row['id']);
+			// $LikeSession2 = $LikeSession->ActiveCheck($row['id']);
 			echo "<input type='hidden' id='uP' value='".$row['id']."'>";
  			// $id++;
 			$ReactCheck2 = $ReactCheck->UserReactCheck($row['id']);
@@ -82,6 +82,13 @@ $SearchInfo = new SearchInfo();
 				
 						
 				<div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
+							<?php
+								// $getCurrentActive = $get_p->checkActive($row['id']);
+								// while($show_like_active = $getCurrentActive->fetch_all()) { 
+								// 	echo $show_like_active['Active'];
+								// }
+							?>
+
 								<button 
 								id= "image-<?php echo $row['id']; ?>"
 								type="submit" 
@@ -90,7 +97,7 @@ $SearchInfo = new SearchInfo();
 								data-id="<?php echo $_SESSION['user_id']; ?>" 
 								data-value="<?php echo $row['id']; ?>" 
 								onclick="setGetLike(this);" 
-								style="padding: 10px; border-radius: 5px; border-top-right-radius: 0px; border-top-left-radius: 0px;" 
+								style="padding: 10px; border-radius: 5px;" 
 								value=""
 								>
 							<?php  $get_p->showUserLikes($row['id']) ;?> like(s)

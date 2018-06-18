@@ -8,7 +8,7 @@
 
 
 	<!-- alles wat in de navigatie balk zit -->
-	<?php //include("Views/partials/navbar.php") ?>
+	<?php include("Views/partials/navbar.php") ?>
 
 
 	<!-- alles wat in de content zit -->
