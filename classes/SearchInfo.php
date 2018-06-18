@@ -46,22 +46,24 @@
 
 			$result2 = $this->mysqli->query($sql2);
 
-			$id = 0;
-			while($row2 = $result2->fetch_assoc()) {
-				$id++;
-				echo "
-				
-
-
-			<div class=' col-md-3 1 div-home ' >
-			<img id='myImg'  href='#my_modal'
-					 data-toggle='modal' class='img-responsive img-home img-style borders' 
-					 data-route-id='". $row2['photo_d']."' src='".$row2['photo_d']."' alt='". $row2['photo_description'] ."' style=' width: 100%;' height='250'
-					 data-description-id='". $row2['photo_description']."' />
-		</div>
-				";
-			}
+			return $result2;
 			 
+		}
+
+		public function sLink($photo_id) {
+
+			$sql = "SELECT users.username username,
+						   upload_images.user_id user_id
+					FROM   upload_images
+					INNER JOIN users
+					ON upload_images.user_id = users.user_id
+					WHERE upload_images.id = ".$this->mysqli->real_escape_string($photo_id)."
+				   ";
+
+			$result = $this->mysqli->query($sql);
+
+			return $result;		
+
 		}
 
 	}

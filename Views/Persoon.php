@@ -4,14 +4,12 @@ session_start();
 
 try {
 
-	$upload= new Upload();
-	$aboutUs=new Userclass();
-	$aboutUs->session_check($_SESSION['email']);
 
 	$upload = new Upload();
 	$aboutUs = new Userclass();
 	$aboutUs->session_check($_SESSION['email']);
 	$display = new Display();
+	$upload->delAllImg();
 
 
 } catch (Exception $e) {
@@ -29,10 +27,25 @@ if (isset($_POST['submitdel'])) {
 	}
 
 ?>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+
+
+
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
   <div class="container-fluid">
   <ul class="nav navbar-nav col-md-12">
- <li class="nav-item col-md-2 col-md-offset-10" style="float:right;"><a class="page-scroll" style="text-align: center" href="update_persoon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+<li class="nav-item col-md-2 col-md-offset-9">
+	<div id="dependent-box">
+	<span >
+		<input  form="deleteForm" type="submit" name="submit" class="form-control" value="delete selected" style="margin-top: 8px;width: 111px;padding: 0px;float: right;"> 
+	</span></div>
+</li>
+
+
+
+ <li class="nav-item col-md-1 " style="float:right;"><a class="page-scroll" style="text-align: center" href="update_persoon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
     </li>
    
   </ul>
@@ -49,34 +62,66 @@ if (isset($_POST['submitdel'])) {
 </nav>
 </div> -->
 
-
+<?php if($profile[3] != "") { ?>
 
 <div class="container-fluid">
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
-			<img id='myImg'  href="#myModal1" 
-					 data-toggle="modal" class="img-responsive img-home img-style borders" 
-					 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='250' />
+			<img 	id='myImg'  
+					href="#myModal1" 
+					data-toggle="modal"
+					class="img-responsive img-home img-style borders" 
+			 		data-route-id="<?php echo $profile[3];?>" 
+			 		src='<?php echo $profile[3]; ?>' 
+			 		alt='<?php echo $profile[4]; ?>' 
+			 		style=' width: 100%;height:100%;' 
+			 		height='250' />
 		</div>
 		<div class="col-md-9 bio-view borders mobile_margin " style="margin-top: 5px;background-color: #993e3d;">
 			<div class="" style="width:100%;height:100%;">
-			<b  style="color:white; "><?php echo $profile[4]; ?></b>
+			<b style="color:white; "><?php echo $profile[4]; ?></b>
 			</div>
 		</div>
-		
 </div>
+
+<?php } else { ?>
+
+<div class="container-fluid">
+		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
+			<img id='myImg' href="#myModal1" 
+			 data-toggle="modal" class="img-responsive img-home img-style borders" 
+			 data-route-id="uploads/upload-empty.png" src='uploads/upload-empty.png' alt='je hebt nog geen profiel foto toegevoegd' style='width: 100%;height:100%;' height='250' />
+		</div>
+		<div class="col-md-9 bio-view borders mobile_margin " style="margin-top: 5px;background-color: #993e3d;">
+			<div class="" style="width:100%;height:100%;">
+			<b style="color:white; ">je hebt nog geen profiel descriptie toegevoegd</b>
+			</div>
+		</div>
+</div>
+
+<?php } ?>
 
  <hr> 
 
 <div class="container-fluid">
 	<div class="col-md-12 ">
+		<form id="deleteForm" method='post' id='userform' action=''> 
 		<?php
 			$get_p = new Upload();
+			$ReactCheck = new ReactCheck();
 			$fotos = $get_p->show_foto();
 			$id= 0;
 			while($row = $test->fetch_assoc()) {
+				$ReactCheck2 = $ReactCheck->UserReactCheck($row['id']);
  			 $id++;
-		?>        
-			<div class=' col-md-3 <?php echo $id ?> div-home '>
+		?>       
+			<div class=' col-md-3 <?php echo $id ?> div-home ' style="height: 300px;margin-bottom: -10px;margin-top: -10px;">
+
+				<label style="position: relative;margin-left: 9px;top: 43px;background-color: #6f0104; color: white; padding: 0px 5px 0px 5px;border: 2.5px solid brown;" >
+	<input class="checker" type="checkbox" value="<?php echo $row['photo_d'];?>" name="checkbox[]" style="padding"  />
+				 <p style="float: right;padding-bottom: -5px;margin-bottom: -5px;margin-top: 2px;"> 
+				 	<?php echo $upload->showLikes($row['photo_d']) ?> 
+				 </p>
+				</label>
 				<img class ="img-responsive img-home img-style borders"    
 					 alt="<?php echo $row['photo_description'] ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
@@ -85,10 +130,18 @@ if (isset($_POST['submitdel'])) {
 					 data-id ="<?php echo $id ?>" 
 					 data-route-id="<?php echo $row['photo_d'];?>" 
 					 data-description-id="<?php echo $row['photo_description'];?>"
+					 data-photo-id="<?php echo $row['id'];?>"
+				     data-id="<?php echo $_SESSION['user_id']; ?>"
+					 <?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
+						data-reaction="<?php echo $row3000['comment']; 
+						?>"
+					 <?php 
+				} 
+				?>
 				>		
 			</div>
 			<?php } ?>
-		
+		</form>
 	</div>
 </div>
 
@@ -112,11 +165,7 @@ if (isset($_POST['submitdel'])) {
 					<div class="col-md-6 padding-t-b-1" id="Description">
 				       <span></span>
 					</div>
-
-					
-
-					
-
+					<input type="hidden" id="getMyPhotoId">
 				</div>
 			<div class="modal-footer">
 				<div class="col-md-12 ">
@@ -127,12 +176,7 @@ if (isset($_POST['submitdel'])) {
 				<div style="float: right;">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
 
-				<div style="float: right;margin-right: 8px;">
-				<form action="" method="POST"	enctype="multipart/form-data">
-						<input type="hidden" data-input="false" data-classIcon="icon-plus"  name="route" id="routeLoc" value="">
-						<input id="" type="submit" class="btn btn-success" value="Delete the post" name="submitdel" >
-					</form>
-				</div>
+				
 				</div>
 			</div>
 			</div>
@@ -168,3 +212,22 @@ if (isset($_POST['submitdel'])) {
 </div>
 
 
+    
+
+<script>
+    window.onload = function() {
+        var checkbox = $('.checker'); 
+        var dependent = $('#dependent-box');
+	    dependent.hide();
+        checkbox.on('click', function(){
+	        if ($('.checker:checked').length !== 0){
+	           dependent.show();
+	           
+	        } else {
+	            dependent.hide();
+	           
+	        }
+        });
+ 
+    }; 
+</script>

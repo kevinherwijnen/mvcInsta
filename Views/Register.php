@@ -14,13 +14,13 @@ if (isset($_REQUEST['submit'])){
 
 	 // Registration Success
 
-		echo 'Registration successful <a href="login.php">Click here</a> to login';
+		echo 'Registration successful <a href="login">Click here</a> to login';
 
 	} else {
 
 	 // Registration Failed
 
-		echo 'Registration failed. Email or Username already exits please try again';
+		echo 'Registration failed. Email or Username already exists please try again';
 
 	}
 
@@ -88,67 +88,53 @@ Register
 
 </script>
 
-<div id="container-fluid">
+<body style="padding: 0px">
 
-	<h1>Registration Here</h1>
+	<div class="wrapper">
 
-	<form action="" method="post" name="reg">
+		<div id="my-jumbo">
+			<div class="jumbotron " >
 
-		<table>
+				<span style="font-family: 'Verdana', Courier, monospace; font-size: 13px; font-style: normal; line-height: 1.5;">
+					<div id="container-fluid">
+						<div id="col-md-12">
 
-			<tbody>
+							<h1 class="jumbotronHeadText">Registration Here</h1>
 
-				<tr>
-
-					<th>Full Name:</th>
-
-					<td><input type="text" name="fullname" required="" /></td>
-
-				</tr>
-
-				<tr>
-
-					<th>User Name:</th>
-
-					<td><input type="text" name="uname" required="" /></td>
-
-				</tr>
-
-				<tr>
-
-					<th>Email:</th>
-
-					<td><input type="text" name="uemail" required="" /></td>
-
-				</tr>
-
-				<tr>
-
-					<th>Password:</th>
-
-					<td><input type="password" name="upass" required="" /></td>
-
-				</tr>
-
-				<tr>
-
-					<td></td>
-
-					<td><input onclick="return(submitreg());" type="submit" name="submit" value="Register" /></td>
-
-				</tr>
-
-				<tr>
-
-					<td></td>
-
-					<td><a href="login">Already registered! Click Here!</a></td>
-
-				</tr>
-
-			</tbody>
-
-		</table>
-
-	</form>
-</div>
+							<form action="" method="post" name="reg">
+								<table>
+									<tbody>
+										<tr>
+											<th><p class="jumbotronText">Full Name:<br></p></th>
+											<td class="inputstyle"><input type="text" name="fullname" required="" /></td>
+										</tr>
+										<tr>
+											<th><p class="jumbotronText">User Name:</p></th>
+											<td class="inputstyle"><input type="text" name="uname" required="" /></td>
+										</tr>
+										<tr>
+											<th><p class="jumbotronText">Email:</p></th>
+											<td class="inputstyle"><input type="text" name="uemail" required="" /></td>
+										</tr>
+										<tr>
+											<th><p class="jumbotronText">Password:</p></th>
+											<td class="inputstyle"><input type="password" name="upass" required="" /></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="inputstyle"><input onclick="return(submitreg());" type="submit" name="submit" value="Register" /></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td><a href="login">Already registered! Click Here!</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</span>
+			</div>
+		</div>
+	</div>
+</body>
