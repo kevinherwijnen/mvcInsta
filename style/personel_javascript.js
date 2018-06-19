@@ -283,7 +283,7 @@ function getAllLikes()
 
 $(document).ready(function(){
 
-	setInterval(getAllLikes, 5000);
+	setInterval(getAllLikes, 1500);
 // setInterval(getAllActive, 2000);
 
 });
