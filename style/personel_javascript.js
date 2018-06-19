@@ -12,13 +12,6 @@ function readURL(input) {
 	}
 }
 
-$(document).ready(function(){
-	$('#myModal').on('show.bs.modal', function(e) {
-		var RouteId = $(e.relatedTarget).attr('src');
-		$('#img01').attr('src', RouteId);
-	});
-});
-
 //om de foto in de modal te open heb je dit stukje nodig die de route van de image toestuurt
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function(e) {
@@ -63,6 +56,12 @@ $(document).ready(function(){
 	});
 });
 
+$(document).ready(function(){
+	$('#myModal').on('show.bs.modal', function(e) {
+		var RouteId = $(e.relatedTarget).attr('src');
+		$('#img01').attr('src', RouteId);
+	});
+});
 
 //krijg de momentele scroll hoogte van de pagina 
 //en blijf op de hoogte staan tijdens het herladen van de pagina 
