@@ -82,17 +82,22 @@ $SearchInfo = new SearchInfo();
 				
 						
 				<div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
-							<?php
-								// $getCurrentActive = $get_p->checkActive($row['id']);
-								// while($show_like_active = $getCurrentActive->fetch_all()) { 
-								// 	echo $show_like_active['Active'];
-								// }
-							?>
+						
 
-								<button 
+							<button 
+							<?php
+								if($get_p->checkActive($row['id']) == 1) {
+							?>
+								class="btn-block btn-danger"
+							<?php
+								} else {
+							?>
+								class="btn-block btn-success"
+							<?php
+								}
+							?>							
 								id= "image-<?php echo $row['id']; ?>"
 								type="submit" 
-								class="btn-block" 
 								name="insertLike"  
 								data-id="<?php echo $_SESSION['user_id']; ?>" 
 								data-value="<?php echo $row['id']; ?>" 

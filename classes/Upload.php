@@ -198,7 +198,12 @@ public function showLikes($photo_d) {
 							  
 		$result = $this->mysqli->query($sql);
 
-		return $result;
+		if (mysqli_num_rows($result) == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+
 	}
 
 

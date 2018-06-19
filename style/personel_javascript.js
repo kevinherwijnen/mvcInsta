@@ -6,21 +6,22 @@ function readURL(input) {
 		var reader = new FileReader();
 		reader.onload = function (e) {
 			$('#myImg')
-			.attr('src', e.target.result)
-			$('#myImg')
-			.attr('data-route-id-add', e.target.result)
-			
-
+			.attr('src', e.target.result);
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
 }
 
+$(document).ready(function(){
+	$('#myModal').on('show.bs.modal', function(e) {
+		var RouteId = $(e.relatedTarget).attr('src');
+		$('#img01').attr('src', RouteId);
+	});
+});
 
 //om de foto in de modal te open heb je dit stukje nodig die de route van de image toestuurt
 $(document).ready(function(){
 	$('#my_modal').on('show.bs.modal', function(e) {
-		var RouteIdAdd = $(e.relatedTarget).data('data-route-id-add');
 		var RouteId = $(e.relatedTarget).data('route-id');
 		var DescriptionId = $(e.relatedTarget).data('description-id');
 		var photoId = $(e.relatedTarget).data('photo-id');
@@ -28,7 +29,6 @@ $(document).ready(function(){
 		var commentId = $(e.relatedTarget).data('reaction');
 		var userPost = $(e.relatedTarget).data('user-post');
 		var userPostId = $(e.relatedTarget).data('user-post-id');
-		$('#img01').attr('src', RouteIdAdd);
 
 		$('#myImage').attr('src', RouteId);
 
@@ -60,14 +60,6 @@ $(document).ready(function(){
 
 
 		$('#myProfileImage').attr('value', "RouteId");
-	});
-});
-
-$(document).ready(function(){
-	$('#myModal').on('show.bs.modal', function(e) {
-		var RouteId = $(e.relatedTarget).data('route-id-add');
-		$('#img01').attr('src', RouteId);
-
 	});
 });
 
@@ -292,7 +284,7 @@ function getAllLikes()
 
 $(document).ready(function(){
 
-	setInterval(getAllLikes, 1000);
+	setInterval(getAllLikes, 5000);
 // setInterval(getAllActive, 2000);
 
 });
