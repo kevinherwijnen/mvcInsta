@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$('#myModal').on('show.bs.modal', function(e) {
-		var RouteId = $(e.relatedTarget).data('route-id-add');
+		var RouteId = $(e.relatedTarget).attr('src');
 		$('#img01').attr('src', RouteId);
 
 	});
