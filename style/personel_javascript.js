@@ -213,7 +213,6 @@ function openComments() {
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
 	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
-	var getMyPhotoId4 = getMyPhotoId.getAttribute('data-reaction');
 	var previousValue;
 
 	obj4 = { "myTable":"addreaction", "myRow":parseInt(getMyPhotoId3) };
@@ -283,7 +282,7 @@ function getAllLikes()
 
 $(document).ready(function(){
 
-	setInterval(getAllLikes, 5000);
+	setInterval(getAllLikes, 1500);
 // setInterval(getAllActive, 2000);
 
 });

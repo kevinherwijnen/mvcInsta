@@ -55,10 +55,13 @@
 			</div>
 
 			<div class="col-md-4" style="float: right;">
-				<div class="col-md-4 " style="margin:  5px 10px 5px 10px">
+				<div class="col-md-12" style="margin: 5px 10px 5px 10px; display: inline-flex;">
+					0 / 100
+				</div>
+				<div class="col-md-4" style="margin: 5px 10px 5px 10px">
 					<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" required>
 				</div>
-				<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
+				<div class="col-md-12" style="width: 146px;margin: 5px 10px 5px 10px">
 					<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
 				</div>
 			</div>
