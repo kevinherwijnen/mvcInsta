@@ -132,6 +132,8 @@ public function unlink($user_id) {
 
 	$sql2 = "DELETE FROM upload_images_profile WHERE `user_id` = $user_id ";
 	$this->mysqli->query($sql2);
+
+
 }
 
 public function delImg($route) {
@@ -154,14 +156,18 @@ public function delImg($route) {
 public function delAllImg() {
 	if(isset($_POST['submit'])){ 
 		
-			$check=implode("', '",  $_POST['checkbox'] );
+			$check=implode(" OR upload_images.id = ",  $_POST['checkbox'] );
 			
-			$sql2 = "DELETE FROM `upload_images` WHERE `photo_d` in ('$check')";
+			$sql2 = "DELETE upload_images, photo_liked,addreaction
+ FROM upload_images
+ LEFT JOIN photo_liked ON upload_images.id = photo_liked.photo_id
+ LEFT JOIN addreaction ON upload_images.id = addreaction.photo_id
+ WHERE upload_images.id = $check";
 
+echo $sql2;
 			$this->mysqli->query($sql2);
 
 			header("Refresh:0");
-		    
 	}
 }
 

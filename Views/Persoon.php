@@ -66,7 +66,7 @@ if (isset($_POST['submitdel'])) {
 
 <div class="container-fluid">
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
-			<img id='myImg'  href="#myModal1" 
+			<img id='myImg'  href="#myModal" 
 			 data-toggle="modal" class="img-responsive img-home img-style borders" 
 			 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;height:100%;' height='250' />
 		</div>
@@ -81,7 +81,7 @@ if (isset($_POST['submitdel'])) {
 
 <div class="container-fluid">
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
-			<img id='myImg' href="#myModal1" 
+			<img id='myImg' href="#myModal" 
 			 data-toggle="modal" class="img-responsive img-home img-style borders" 
 			 data-route-id="uploads/upload-empty.png" src='uploads/upload-empty.png' alt='je hebt nog geen profiel foto toegevoegd' style='width: 100%;height:100%;' height='250' />
 		</div>
@@ -111,7 +111,7 @@ if (isset($_POST['submitdel'])) {
 			<div class=' col-md-3 <?php echo $id ?> div-home ' style="height: 300px;margin-bottom: -10px;margin-top: -10px;">
 
 				<label style="position: relative;margin-left: 9px;top: 43px;background-color: #6f0104; color: white; padding: 0px 5px 0px 5px;border: 2.5px solid brown;" >
-	<input class="checker" type="checkbox" value="<?php echo $row['photo_d'];?>" name="checkbox[]" style="padding"  />
+	<input class="checker" type="checkbox" value="<?php echo $row['id'];?>" name="checkbox[]" style="padding"  />
 				 <p style="float: right;padding-bottom: -5px;margin-bottom: -5px;margin-top: 2px;"> 
 				 	<?php echo $upload->showLikes($row['photo_d']) ?> 
 				 </p>
@@ -141,8 +141,38 @@ if (isset($_POST['submitdel'])) {
 
 
 
-<div class=" modal" id="my_modal">
+
+
+<!-- model for profile img'es -->
+<div class=" modal" id="myModal">
 	<div class="modal-dialog" style="width:80%;">
+
+		<div class="container-fluid modal-content model-background borders">
+			<div class="modal-header">
+				<button class="close" type="hidden"></button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
+					<span aria-hidden="true" style="color:black;">&times;</span>
+				</button>
+				<h4 class="modal-title">Modal header</h4>
+			</div>
+			<div class="col-md-12 ">
+				<div class=' col-md-12  div-home-model padding-t-b-1'>
+					<img id="img01" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
+				</div>
+				
+
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+    
+    <div class=" modal" id="my_modal">
+<div class="modal-dialog" style="width:80%;">
 		<div class="container-fluid modal-content model-background borders">
 			<div class="modal-header">
 				<button class="close" type="hidden"></button>
@@ -181,33 +211,6 @@ if (isset($_POST['submitdel'])) {
 </div>
 
 
-<!-- model for profile img'es -->
-<div class=" modal" id="myModal1">
-	<div class="modal-dialog" style="width:80%;">
-
-		<div class="container-fluid modal-content model-background borders">
-			<div class="modal-header">
-				<button class="close" type="hidden"></button>
-				<button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">
-					<span aria-hidden="true" style="color:black;">&times;</span>
-				</button>
-				<h4 class="modal-title">Modal header</h4>
-			</div>
-				<div class="col-md-12 "><div class=' col-md-12  div-home-model padding-t-b-1'>
-						<img id="myProfileImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
-					</div>
-					
-
-				</div>
-			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-			</div>
-		</div>
-	</div>
-</div>
-
-
-    
 
 <script>
     window.onload = function() {
@@ -226,3 +229,5 @@ if (isset($_POST['submitdel'])) {
  
     }; 
 </script>
+
+
