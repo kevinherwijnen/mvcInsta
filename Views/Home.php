@@ -60,21 +60,21 @@ $SearchInfo = new SearchInfo();
 				<img 
 				class ="img-responsive img-home img-style borders"   
 				style="border-bottom: 0px solid #980000; border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;" 
-				alt="<?php echo $row['photo_description'] ?>"  
+				alt="<?php echo htmlspecialchars($row['photo_description']); ?>"  
 				src="<?php echo $row['photo_d'];?>" 
 				href="#my_modal" 
 				data-toggle="modal" 
 				data-route-id="<?php echo $row['photo_d'];?>" 
-				data-description-id="<?php echo $row['photo_description'];?>"
+				data-description-id="<?php echo htmlspecialchars($row['photo_description']); ?>"
 				data-photo-id="<?php echo $row['id'];?>"
 				data-id="<?php echo $_SESSION['user_id']; ?>"
 				<?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
-				data-reaction="<?php echo $row3000['comment']; 
+				data-reaction="<?php echo htmlspecialchars($row3000['comment']); 
 				?>"
 				<?php }	?>
 				<?php while($row4000 = $SearchInfo2->fetch_assoc()) {?>
-				data-user-post="<?php echo $row4000['username']; ?>"
-				data-user-post-id="<?php echo $row4000['user_id']; ?>"
+					data-user-post="<?php echo htmlspecialchars($row4000['username']); ?>"
+					data-user-post-id="<?php echo $row4000['user_id']; ?>"
 				<?php } ?>
 
 				>

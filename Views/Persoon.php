@@ -68,11 +68,11 @@ if (isset($_POST['submitdel'])) {
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
 			<img id='myImg'  href="#myModal" 
 			 data-toggle="modal" class="img-responsive img-home img-style borders" 
-			 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;height:100%;' height='250' />
+			 data-route-id="<?php echo $profile[3];?>" src='<?php echo htmlspecialchars($profile[3]); ?>' alt='<?php echo htmlspecialchars($profile[4]); ?>' style=' width: 100%;height:100%;' height='250' />
 		</div>
 		<div class="col-md-9 bio-view borders mobile_margin " style="margin-top: 5px;background-color: #993e3d;">
 			<div class="" style="width:100%;height:100%;">
-			<b style="color:white; "><?php echo $profile[4]; ?></b>
+			<b style="color:white; "><?php echo htmlspecialchars($profile[4]); ?></b>
 			</div>
 		</div>
 </div>
@@ -117,17 +117,17 @@ if (isset($_POST['submitdel'])) {
 				 </p>
 				</label>
 				<img class ="img-responsive img-home img-style borders"    
-					 alt="<?php echo $row['photo_description'] ?>"  
+					 alt="<?php echo htmlspecialchars($row['photo_description']); ?>"  
 					 src="<?php echo $row['photo_d'];?>" 
 					 href="#my_modal" 
 					 data-toggle="modal" 
 					 data-id ="<?php echo $id ?>" 
 					 data-route-id="<?php echo $row['photo_d'];?>" 
-					 data-description-id="<?php echo $row['photo_description'];?>"
+					 data-description-id="<?php echo htmlspecialchars($row['photo_description']); ?>"
 					 data-photo-id="<?php echo $row['id'];?>"
 				     data-id="<?php echo $_SESSION['user_id']; ?>"
 					 <?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
-						data-reaction="<?php echo $row3000['comment']; 
+						data-reaction="<?php echo htmlspecialchars($row3000['comment']); 
 						?>"
 					 <?php 
 				} 
@@ -186,7 +186,7 @@ if (isset($_POST['submitdel'])) {
 			</div>
 			<div class="col-md-6 ">
 				<div class="col-md-12 padding-t-b-1" id="Description" style="height: 180px;">
-					<span></span>
+					<span style="word-wrap: break-word;"></span>
 				</div>
 				<div class="col-md-12 padding-t-b-1">
 					<span>Voeg reactie toe:</span><br>
