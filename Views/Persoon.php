@@ -20,11 +20,6 @@ try {
 
  $test = $display->indexProfileAll($_SESSION['user_id']);
 
-if (isset($_POST['submitdel'])) {
-		$temp = new Upload();
-		
-		$temp->delImg($_POST['route']);
-	}
 
 ?>
 

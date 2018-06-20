@@ -18,7 +18,7 @@
 		$location = "";// extra location where to image goes (map structure) if empty goes to first/ standard location
 		$locationdb = "";// extra location where to image goes (database)if empty goes to first/ standard location
 
-		if($_POST['description'] >= 225) {
+		if($_POST['description'] >= 311) {
 			echo "<h4 style='color: white;'>jij hebt je letter limiet van 100 letters overschreden</h4>";
 		} else {
 			$temp->upload_Image($_FILES['fileToUpload'], $_POST['description'], $location,$locationdb);
@@ -56,7 +56,7 @@
 
 			<div class="col-md-6" style="float: right;">
 				<div class="col-md-4" style="color: white; margin: 5px 10px 5px 10px;">
-					<div id="letterCount">225</div>/ 225
+					<div id="letterCount">311</div>/ 311
 				</div>
 				<div class="col-md-3" style="margin: 5px 10px 5px 10px">
 					<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" required>
