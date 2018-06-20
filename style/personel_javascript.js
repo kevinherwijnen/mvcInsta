@@ -272,17 +272,17 @@ function getAllLikes()
 
 }
 
-// function getAllActive() {
-// $.ajax({url: "Ajax/addLikes.php", success: function(result){
-// $.each(result, function(key, value){
-// });
-// }}); 
-// }
-
-
 $(document).ready(function(){
 
 	setInterval(getAllLikes, 1500);
-// setInterval(getAllActive, 2000);
 
+});
+
+$(document).ready(function() {
+	$('#getLetterCount').keyup(function() {
+
+		$('#letterCount').text(225 - $(this).val().length);
+		$('#getLetterCount').attr('maxlength', 225);
+		
+	});
 });

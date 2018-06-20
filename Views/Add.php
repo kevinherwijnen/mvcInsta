@@ -18,7 +18,7 @@
 		$location = "";// extra location where to image goes (map structure) if empty goes to first/ standard location
 		$locationdb = "";// extra location where to image goes (database)if empty goes to first/ standard location
 
-		if($_POST['description'] >= 100) {
+		if($_POST['description'] >= 225) {
 			echo "<h4 style='color: white;'>jij hebt je letter limiet van 100 letters overschreden</h4>";
 		} else {
 			$temp->upload_Image($_FILES['fileToUpload'], $_POST['description'], $location,$locationdb);
@@ -51,17 +51,17 @@
 
 			</div>
 			<div class="col-md-9 ">
-				<textarea name="description" rows="9" cols="100" class="form-control" style="height: 210px;margin-top: 5px;background-color: #993e3d; color:white;"></textarea>
+				<textarea name="description" id="getLetterCount" rows="9" cols="100" class="form-control" style="height: 210px;margin-top: 5px;background-color: #993e3d; color:white;"></textarea>
 			</div>
 
-			<div class="col-md-4" style="float: right;">
-				<div class="col-md-12" style="margin: 5px 10px 5px 10px; display: inline-flex;">
-					0 / 100
+			<div class="col-md-6" style="float: right;">
+				<div class="col-md-4" style="color: white; margin: 5px 10px 5px 10px;">
+					<div id="letterCount">225</div>/ 225
 				</div>
-				<div class="col-md-4" style="margin: 5px 10px 5px 10px">
+				<div class="col-md-3" style="margin: 5px 10px 5px 10px">
 					<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" required>
 				</div>
-				<div class="col-md-12" style="width: 146px;margin: 5px 10px 5px 10px">
+				<div class="col-md-3" style="width: 146px;margin: 5px 10px 5px 10px">
 					<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
 				</div>
 			</div>
