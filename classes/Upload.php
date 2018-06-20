@@ -136,21 +136,6 @@ public function unlink($user_id) {
 
 }
 
-public function delImg($route) {
-
-	
-//echo $this->mysqli->query($randomnum);
-
-	$sql2 = "DELETE FROM upload_images WHERE `photo_d` = '$route'";
-	unlink($route);
-	$this->mysqli->query($sql2);
-
-
-	//header("location:persoon");
-
-	header("Refresh:0");
-
-}
 
 
 public function delAllImg() {
@@ -164,7 +149,7 @@ public function delAllImg() {
  LEFT JOIN addreaction ON upload_images.id = addreaction.photo_id
  WHERE upload_images.id = $check";
 
-echo $sql2;
+
 			$this->mysqli->query($sql2);
 
 			header("Refresh:0");

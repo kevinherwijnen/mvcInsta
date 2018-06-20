@@ -281,8 +281,8 @@ $(document).ready(function(){
 $(document).ready(function() {
 	$('#getLetterCount').keyup(function() {
 
-		$('#letterCount').text(225 - $(this).val().length);
-		$('#getLetterCount').attr('maxlength', 225);
+		$('#letterCount').text(311 - $(this).val().length);
+		$('#getLetterCount').attr('maxlength', 311);
 		
 	});
 });
