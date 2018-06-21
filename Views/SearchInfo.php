@@ -191,7 +191,7 @@ $result = $searchInfo->sInfo();
 			</div>
 			<div class="col-md-6 ">
 				<div class="col-md-12 padding-t-b-1" id="Description" style="height: 180px;">
-					<span></span>
+					<span style="word-wrap: break-word;"></span>
 				</div>
 				<div class="col-md-12 padding-t-b-1">
 					<span>Voeg reactie toe:</span><br>
