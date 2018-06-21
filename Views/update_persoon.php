@@ -50,19 +50,12 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
 			<img id='myImg'  href="#myModal1" 
 					 data-toggle="modal" class="img-responsive img-home img-style borders" 
-					 data-route-id="<?php echo $profile[3];?>" src='<?php echo htmlspecialchars($profile[3]); ?>' alt='<?php echo htmlspecialchars($profile[4]); ?>' style=' width: 100%;' height='250' />
+					 data-route-id="<?php echo $profile[3];?>" src='<?php echo htmlspecialchars($profile[3]); ?>' alt='<?php echo htmlspecialchars($profile[4]); ?>' style=' width: 100%;height: 100%' height='250' />
 		</div>
 		<div class="col-md-9  ">
-			<textarea class="col-md-9 bio-view borders mobile_margin " name="description" style="height:100%; background-color:#993e3d;margin-top: 5px; color:white;" ><?php echo htmlspecialchars($profile[4]); ?></textarea>
+			<textarea class="bio-view borders " name="description" style="height:100%; padding:15px; background-color:#993e3d;margin-top: 5px; color:white;" >		<?php echo htmlspecialchars($profile[4]); ?>
+			</textarea>
 			</div>
-					 
-		</div>
-
-		
-			
-			
-		
-
 		<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
 			<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
 		</div>
