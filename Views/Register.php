@@ -14,13 +14,22 @@ if (isset($_REQUEST['submit'])){
 
 	 // Registration Success
 
-		echo 'Registration successful <a href="login">Click here</a> to login';
+		?>
+		<div class="row" style="margin-bottom: -81.6px;">
+		<div class="alert alert-success " style=" margin: 15px auto;width: 44%;" role="alert">
+ 				Registration successful <a href="login">Click here</a> to login
+			  </div></div>
+		<?php 
 
 	} else {
 
 	 // Registration Failed
 
-		echo 'Registration failed. Email or Username already exists please try again';
+		?> 
+		<div class="row" style="margin-bottom: -81.6px;"><div class="alert alert-danger " style=" margin: 15px auto;width: 44%;" role="alert">
+  				Registration failed. Email or Username already exists please try again 
+			  </div></div>
+		<?php 
 
 	}
 
@@ -35,8 +44,6 @@ if (isset($_REQUEST['submit'])){
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
 
-
-Register
 
 <style><!--
 
@@ -83,6 +90,8 @@ Register
 			return false;
 
 		}
+
+		header("Location: login");
 
 	}
 

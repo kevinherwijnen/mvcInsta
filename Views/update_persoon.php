@@ -30,10 +30,6 @@ if (isset($_POST['submit'])) {
 	$display = new Display();
 $profile = $display->indexProfile($_SESSION['user_id']);
 
-
-
-
-
 ?>
 
 <nav class="main-nav navbar-default navbar-fixed-top navbar-inverse" role="navigation" >
@@ -44,33 +40,28 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 						Herrie
 				</p>
 			</li>
-			
-
 		</ul>
 	</div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
 	<div class="col-md-12">
 		<form action="" method="POST"	enctype="multipart/form-data">
 		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
 			<img id='myImg'  href="#myModal1" 
 					 data-toggle="modal" class="img-responsive img-home img-style borders" 
-					 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;' height='250' />
+					 data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;height: 100%' height='250' />
 		</div>
-
-		
-			<textarea class="col-md-9 bio-view borders mobile_margin " name="description" style="height:100%; background-color:#993e3d;margin-top: 5px; color:white;" ><?php echo $profile[4]; ?></textarea>
-			
-		
-
-		
+		<div class="col-md-9  ">
+			<textarea class="bio-view borders " name="description" style="height:100%; padding:15px; background-color:#993e3d;margin-top: 5px; color:white;" >		<?php echo $profile[4]; ?>
+			</textarea>
+			</div>
 		<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
 			<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
 		</div>
 		<div class="col-md-4 " style="margin:  5px 10px 5px 10px">
-					<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" >
-				</div>
+			<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" >
+		</div>
 		
 		</form>
 	</div>
