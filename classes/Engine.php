@@ -5,9 +5,9 @@
 			<div class="container-fluid">
 				<div class="col-md-8 col-md-offset-2">
 					<h1>Search</h1>
-					<form action="" method="get" enctype="multipart/form-data" autocomplete="off">
+					<form action="" enctype="multipart/form-data" autocomplete="off">
 						<div class="form-group">
-							  <input type="text" id="Search" onKeyUp="searchEngine();" class="form-control" name="getSearch" placeholder="Search">
+							  <input type="text" id="Search" onKeyUp="searchEngine();" class="form-control" placeholder="Search">
 						</div>
 					</form>
 				</div>
