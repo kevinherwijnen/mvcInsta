@@ -88,7 +88,7 @@ $result = $searchInfo->sInfo();
             while($row3 = $fotos->fetch_assoc()) {
                 $ReactCheck2 = $ReactCheck->UserReactCheck($row3['id']);
                 
-;            }
+            }
             $id++;
             ?>
 
@@ -106,7 +106,6 @@ $result = $searchInfo->sInfo();
                 data-route-id='<?php echo $row2['photo_d']; ?>' 
                 data-description-id='<?php echo $row2['photo_description']; ?>'
                 data-photo-id='<?php echo $row2['id']; ?>'
-                data-id='<?php echo $_SESSION['user_id']; ?>'
                 />                    
                 
                 <div class="col-md-12" style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
@@ -125,8 +124,7 @@ $result = $searchInfo->sInfo();
 								?>
                                 id= "image-<?php echo $row2['id']; ?>"
                                 type="submit" 
-                                name="insertLike"  
-                                data-id="<?php echo $_SESSION['user_id']; ?>" 
+                                name="insertLike"   
                                 data-value="<?php echo $row2['id']; ?>" 
                                 onclick="setGetLike(this);" 
                                 style="padding: 10px; border-radius: 5px; border-top-right-radius: 0px; border-top-left-radius: 0px;" 

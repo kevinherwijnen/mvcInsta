@@ -36,6 +36,11 @@ $SearchInfo = new SearchInfo();
 	</div>
 </nav>
 
+<?php echo "<h1>hallo's</h1>"; ?>
+<?php echo htmlspecialchars(strip_tags("<h1>hallo's</h1>")); ?>
+<?php
+$conn = new mysqli("localhost", "root", "Lollig1", "mvc");
+ echo mysqli_real_escape_string($conn, "<h1>hallo's</h1>"); ?>
 
 <div class="container-fluid">
 	<div class="col-md-12 ">
@@ -67,7 +72,6 @@ $SearchInfo = new SearchInfo();
 				data-route-id="<?php echo $row['photo_d'];?>" 
 				data-description-id="<?php echo htmlspecialchars($row['photo_description']); ?>"
 				data-photo-id="<?php echo $row['id'];?>"
-				data-id="<?php echo $_SESSION['user_id']; ?>"
 				<?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
 				data-reaction="<?php echo htmlspecialchars($row3000['comment']); 
 				?>"
@@ -96,7 +100,6 @@ $SearchInfo = new SearchInfo();
 					id= "image-<?php echo $row['id']; ?>"
 					type="submit" 
 					name="insertLike"  
-					data-id="<?php echo $_SESSION['user_id']; ?>" 
 					data-value="<?php echo $row['id']; ?>" 
 					onclick="setGetLike(this);" 
 					style="padding: 10px; border-radius: 5px;" 

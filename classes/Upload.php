@@ -93,7 +93,7 @@ if(empty($fileToUpload["tmp_name"])){
 
 public function show_foto() {
 
-	$sql = "SELECT photo_d, like_counter, id, photo_description FROM upload_images";
+	$sql = "SELECT photo_d, id, photo_description FROM upload_images";
 
 	$result = $this->mysqli->query($sql);
 
@@ -147,7 +147,9 @@ public function delAllImg() {
  FROM upload_images
  LEFT JOIN photo_liked ON upload_images.id = photo_liked.photo_id
  LEFT JOIN addreaction ON upload_images.id = addreaction.photo_id
- WHERE upload_images.id = $check";
+ WHERE upload_images.id = $check
+ AND upload_images.user_id = ".$_SESSION['user_id']."
+ ";
 
 
 			$this->mysqli->query($sql2);
@@ -156,18 +158,6 @@ public function delAllImg() {
 	}
 }
 
-
-public function showLikes($photo_d) {
-		$sql = "SELECT like_counter FROM `upload_images` WHERE `photo_d` = '$photo_d' ";
-
-				$result = $this->mysqli->query($sql);
-			
-
-				while($like = $result->fetch_assoc()) {
-					echo " &nbsp " . $like['like_counter'] . " likes";
-				}
-		    
-	}
 
 		public function showUserLikes ($photo_id){
 				$sql = "SELECT COUNT(*) FROM photo_liked WHERE `user_id` = ". $_SESSION['user_id'] ." AND `photo_id` = ".$photo_id." 

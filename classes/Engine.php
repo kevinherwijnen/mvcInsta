@@ -93,10 +93,7 @@
 					var getClicked = evt.target.clicked;
 					var getClicked2 = evt.target.clicked2;
 					search.value = getClicked;
-
-					console.log(getClicked);
-					console.log(search.value);
-
+					
 					if (search.value = getClicked) {
 						myDiv.style.display = "none";
 						window.location.href = "search-info?id=" + getClicked2;

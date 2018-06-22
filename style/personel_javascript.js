@@ -18,7 +18,6 @@ $(document).ready(function(){
 		var RouteId = $(e.relatedTarget).data('route-id');
 		var DescriptionId = $(e.relatedTarget).data('description-id');
 		var photoId = $(e.relatedTarget).data('photo-id');
-		var userId = $(e.relatedTarget).data('id');
 		var commentId = $(e.relatedTarget).data('reaction');
 		var userPost = $(e.relatedTarget).data('user-post');
 		var userPostId = $(e.relatedTarget).data('user-post-id');
@@ -31,8 +30,6 @@ $(document).ready(function(){
 		$('#routeLoc').attr('value', RouteId);
 
 		$('#getMyPhotoId').attr('value', photoId);
-
-		$('#getMyPhotoId').attr('data-id', userId);
 
 		$('#getMyPhotoId').attr('data-reaction', commentId);
 
@@ -171,7 +168,6 @@ var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
 function addReaction() {
 
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
-	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var myReaction = document.getElementById('Reactions');
 	var getMyReaction = myReaction.value;
@@ -181,7 +177,7 @@ function addReaction() {
 		alert("it seems that you have not commited anything");
 	} else {
 
-		obj3 = { "table":"addreaction", "row":parseInt(getMyPhotoId2), "row2":parseInt(getMyPhotoId3), "row3":String(getMyReaction) };
+		obj3 = { "table":"addreaction", "row2":parseInt(getMyPhotoId3), "row3":String(getMyReaction) };
 		dbParam3 = JSON.stringify(obj3);
 		xmlhttp3 = new XMLHttpRequest();
 
@@ -211,7 +207,6 @@ var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
 
 function openComments() {
 	var getMyPhotoId = document.getElementById('getMyPhotoId');
-	var getMyPhotoId2 = getMyPhotoId.getAttribute('data-id');
 	var getMyPhotoId3 = getMyPhotoId.value;
 	var previousValue;
 
