@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 }
 
 
-	$display = new Display();
+$display = new Display();
 $profile = $display->indexProfile($_SESSION['user_id']);
 
 ?>
@@ -37,7 +37,7 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 		<ul class="nav navbar-nav col-md-12">
 			<li class="nav-item col-md-2 col-md-offset-right-10 " style="float:left;">
 				<p class="page-scroll" style="color: white;padding-top: 10px;">
-						Herrie
+					Herrie
 				</p>
 			</li>
 		</ul>
@@ -47,22 +47,21 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 <div class="container-fluid">
 	<div class="col-md-12">
 		<form action="" method="POST"	enctype="multipart/form-data">
-		<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
-			<img id='myImg'  href="#myModal1" 
-					 data-toggle="modal" class="img-responsive img-home img-style borders" 
-					 data-route-id="<?php echo $profile[3];?>" src='<?php echo htmlspecialchars($profile[3]); ?>' alt='<?php echo htmlspecialchars($profile[4]); ?>' style=' width: 100%;height: 100%' height='250' />
-		</div>
-		<div class="col-md-9  ">
-			<textarea class="bio-view borders " name="description" style="height:100%; padding:15px; background-color:#993e3d;margin-top: 5px; color:white;" >		<?php echo htmlspecialchars($profile[4]); ?>
-			</textarea>
+			<div class="col-md-3 " style="height:251px; margin-bottom: 10px; ">
+				<img id='myImg'  href="#myModal1" 
+				data-toggle="modal" class="img-responsive img-home img-style borders" 
+				data-route-id="<?php echo $profile[3];?>" src='<?php echo $profile[3]; ?>' alt='<?php echo $profile[4]; ?>' style=' width: 100%;height: 100%' height='250' />
 			</div>
-		<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
-			<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
-		</div>
-		<div class="col-md-4 " style="margin:  5px 10px 5px 10px">
-			<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" >
-		</div>
-		
+			<div class="col-md-9  ">
+				<textarea class="bio-view borders " name="description" style="height:100%; padding:15px; background-color:#993e3d;margin-top: 5px; color:white;" ><?php echo htmlspecialchars(strip_tags($profile[4])); ?></textarea>
+			</div>
+			<div class="col-md-12 " style="width: 146px;margin: 5px 10px 5px 10px">
+				<input type="submit" class="btn btn-block btn-success" value="upload" name="submit" >
+			</div>
+			<div class="col-md-4 " style="margin:  5px 10px 5px 10px">
+				<input type="file" class="filestyle" data-input="false" data-classIcon="icon-plus"  name="fileToUpload" id="fileToUpload" onchange="readURL(this);" >
+			</div>
+			
 		</form>
 	</div>
 
@@ -99,16 +98,14 @@ $profile = $display->indexProfile($_SESSION['user_id']);
 				</button>
 				<h4 class="modal-title">Modal header</h4>
 			</div>
-				<div class="col-md-12 "><div class=' col-md-12  div-home-model padding-t-b-1'>
-						<img id="myProfileImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
-					</div>
-					
-
-				</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<div class="col-md-12 "><div class=' col-md-12  div-home-model padding-t-b-1'>
+				<img id="myProfileImage" class ="img-responsive img-home-model borders padding-t-b-1" src="" alt="Smiley face">
 			</div>
 		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
 	</div>
+</div>
 </div>
 

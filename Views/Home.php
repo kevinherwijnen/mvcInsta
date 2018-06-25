@@ -36,11 +36,6 @@ $SearchInfo = new SearchInfo();
 	</div>
 </nav>
 
-<?php echo "<h1>hallo's</h1>"; ?>
-<?php echo htmlspecialchars(strip_tags("<h1>hallo's</h1>")); ?>
-<?php
-$conn = new mysqli("localhost", "root", "Lollig1", "mvc");
- echo mysqli_real_escape_string($conn, "<h1>hallo's</h1>"); ?>
 
 <div class="container-fluid">
 	<div class="col-md-12 ">
@@ -65,20 +60,22 @@ $conn = new mysqli("localhost", "root", "Lollig1", "mvc");
 				<img 
 				class ="img-responsive img-home img-style borders"   
 				style="border-bottom: 0px solid #980000; border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;" 
-				alt="<?php echo htmlspecialchars($row['photo_description']); ?>"  
-				src="<?php echo $row['photo_d'];?>" 
+				alt="<?php echo htmlspecialchars(strip_tags($row['photo_description'])); ?>"  
+				src="<?php echo htmlspecialchars(strip_tags($row['photo_d']));?>" 
 				href="#my_modal" 
 				data-toggle="modal" 
-				data-route-id="<?php echo $row['photo_d'];?>" 
-				data-description-id="<?php echo htmlspecialchars($row['photo_description']); ?>"
-				data-photo-id="<?php echo $row['id'];?>"
+				data-route-id="<?php echo htmlspecialchars(strip_tags($row['photo_d']));?>" 
+				data-description-id="<?php echo htmlspecialchars(strip_tags($row['photo_description']));?>"
+				data-photo-id="<?php echo htmlspecialchars(strip_tags($row['id']));?>"
+
 				<?php while($row3000 = $ReactCheck2->fetch_assoc()) { ?>
-				data-reaction="<?php echo htmlspecialchars($row3000['comment']); 
-				?>"
+					data-reaction="<?php echo htmlspecialchars(strip_tags($row3000['comment'])); 
+					?>"
 				<?php }	?>
+
 				<?php while($row4000 = $SearchInfo2->fetch_assoc()) {?>
-					data-user-post="<?php echo htmlspecialchars($row4000['username']); ?>"
-					data-user-post-id="<?php echo $row4000['user_id']; ?>"
+					data-user-post="<?php echo htmlspecialchars(strip_tags($row4000['username'])); ?>"
+					data-user-post-id="<?php echo htmlspecialchars(strip_tags($row4000['user_id'])); ?>"
 				<?php } ?>
 
 				>
@@ -86,34 +83,33 @@ $conn = new mysqli("localhost", "root", "Lollig1", "mvc");
 				<div class="col-md-12" 
 				style="padding-right: 0px;padding-left: 0px;border: 7px solid #980000;border-top: 0px solid #980000; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"> 
 				<button 
+				<?php
+				if($get_p->checkActive($row['id']) == 1) {
+					?>
+					class="btn-block btn-danger"
 					<?php
-						if($get_p->checkActive($row['id']) == 1) {
-							?>
-							class="btn-block btn-danger"
-							<?php
-						} else {
-							?>
-							class="btn-block btn-success"
-							<?php
-						}
-					?>							
-					id= "image-<?php echo $row['id']; ?>"
-					type="submit" 
-					name="insertLike"  
-					data-value="<?php echo $row['id']; ?>" 
-					onclick="setGetLike(this);" 
-					style="padding: 10px; border-radius: 5px;" 
-					value=""
-					>
-
-					<?php  $get_p->showUserLikes($row['id']) ;?> like(s)
+				} else {
+					?>
+					class="btn-block btn-success"
+					<?php
+				}
+				?>							
+				id= "image-<?php echo $row['id']; ?>"
+				type="submit" 
+				name="insertLike"  
+				data-value="<?php echo $row['id']; ?>" 
+				onclick="setGetLike(this);" 
+				style="padding: 10px; border-radius: 5px;" 
+				value=""
+				><p>
+					<?php $get_p->showUsersLikes($row['id']) ;?> like(s)</p>
 				</button>
 			</div>
 		</div>
-	<?php 
-		} 
+		<?php 
+	} 
 	?>
-	</div>
+</div>
 </div>
 
 
@@ -150,8 +146,8 @@ $conn = new mysqli("localhost", "root", "Lollig1", "mvc");
 					<input type="hidden" id="getMyPhotoId">
 					<input type="text" name="Reactions" style="padding: 5px; border-radius: 5px;" id="Reactions">
 					<button type="submit" class="btn-primary" id="myReaction" style="padding: 5px; border-radius: 5px;" onclick="addReaction();"/>
-						Comment
-					</button>
+					Comment
+				</button>
 				<div style="height: 50%; margin-top: : 24px;">
 					<p style="color: white;" id="demo2">
 						<hr style='width:100%; border-top: 2.3px solid #ca1616;float: unset;'></p>

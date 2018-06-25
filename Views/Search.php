@@ -1,5 +1,3 @@
-
-
 <?php
 
 	session_start();
@@ -25,8 +23,6 @@
 						Herrie
 				</p>
 			</li>
-			
-
 		</ul>
 	</div>
 </nav>

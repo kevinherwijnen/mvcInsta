@@ -26,7 +26,6 @@ if (isset($_REQUEST['submit'])) {
 			<div id="container-fluid">
 				<div id="col-md-12">
 
-
 			<h1 class="jumbotronHeadText">Login Here</h1>
 
 			<form id="black" action="" method="post" name="login">
@@ -53,11 +52,8 @@ if (isset($_REQUEST['submit'])) {
 			</form>
 		</div></div>
 	</span>
-
 </div>
 </div>
-
-
 
 <!-- mobile version -->
 
