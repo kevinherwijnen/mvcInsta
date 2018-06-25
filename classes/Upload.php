@@ -49,7 +49,7 @@ if(empty($fileToUpload["tmp_name"])){} else{
 
 if(empty($fileToUpload["tmp_name"])){
 	$intodb= "upload_images".$locationdb ;
-	$sql2 = "UPDATE `$intodb` SET photo_description ='".$description."' WHERE user_id = '".$_SESSION['user_id']."' ";
+	$sql2 = "UPDATE `$intodb` SET photo_description ='".$this->mysqli->real_escape_string($description)."' WHERE user_id = '".$_SESSION['user_id']."' ";
 	$this->mysqli->query($sql2);
 			echo '<div class="alert alert-success" role="alert">
 			The file '. basename( $fileToUpload["name"]). ' has been uploaded.
@@ -67,14 +67,13 @@ if(empty($fileToUpload["tmp_name"])){
 				$row = $result->fetch_row();
 
 				$intodb= "upload_images".$locationdb ;
-				$sql2 = "INSERT INTO `$intodb` (user_id, photo_name, photo_d, photo_description, randomnum, like_counter)
+				$sql2 = "INSERT INTO `$intodb` (user_id, photo_name, photo_d, photo_description, randomnum)
 				VALUES (
 				'".$this->mysqli->real_escape_string($row[0])."',
 				'".$this->mysqli->real_escape_string($fileToUpload['name'])."',
 				'".$this->mysqli->real_escape_string($target_file)."',
 				'".$this->mysqli->real_escape_string($description)."',
-				'".$this->mysqli->real_escape_string($randomnummer)."',
-				'".$this->mysqli->real_escape_string(0)."'
+				'".$this->mysqli->real_escape_string($randomnummer)."'
 			)
 			";
 
@@ -93,7 +92,7 @@ if(empty($fileToUpload["tmp_name"])){
 
 public function show_foto() {
 
-	$sql = "SELECT photo_d, like_counter, id, photo_description FROM upload_images";
+	$sql = "SELECT photo_d, id, photo_description FROM upload_images";
 
 	$result = $this->mysqli->query($sql);
 
@@ -123,51 +122,42 @@ public function random_num() {
 
 public function unlink($user_id) {
 
-	$sql="SELECT photo_d FROM `upload_images_profile` WHERE `user_id` = $user_id ";
+	$sql="SELECT photo_d FROM `upload_images_profile` WHERE `user_id` = '".$this->mysqli->real_escape_string($user_id)."' ";
 
 	$path= mysqli_fetch_row($this->mysqli->query($sql));
 // return $path[0];
 	unlink($path[0]);
 //echo $this->mysqli->query($randomnum);
 
-	$sql2 = "DELETE FROM upload_images_profile WHERE `user_id` = $user_id ";
-	$this->mysqli->query($sql2);
-}
-
-public function delImg($route) {
-
-	
-//echo $this->mysqli->query($randomnum);
-
-	$sql2 = "DELETE FROM upload_images WHERE `photo_d` = '$route'";
-	unlink($route);
+	$sql2 = "DELETE FROM upload_images_profile WHERE `user_id` = '".$this->mysqli->real_escape_string($user_id)."' ";
 	$this->mysqli->query($sql2);
 
 
-	//header("location:persoon");
-
-	header("Refresh:0");
-
 }
+
 
 
 public function delAllImg() {
 	if(isset($_POST['submit'])){ 
 		
-			$check=implode("', '",  $_POST['checkbox'] );
+			$check=implode(" OR upload_images.id = ",  $_POST['checkbox'] );
 			
-			$sql2 = "DELETE FROM `upload_images` WHERE `photo_d` in ('$check')";
+			$sql2 = "DELETE upload_images, photo_liked,addreaction
+ FROM upload_images
+ LEFT JOIN photo_liked ON upload_images.id = photo_liked.photo_id
+ LEFT JOIN addreaction ON upload_images.id = addreaction.photo_id
+ WHERE upload_images.id = $check";
+
 
 			$this->mysqli->query($sql2);
 
 			header("Refresh:0");
-		    
 	}
 }
 
 
 public function showLikes($photo_d) {
-		$sql = "SELECT like_counter FROM `upload_images` WHERE `photo_d` = '$photo_d' ";
+		$sql = "SELECT like_counter FROM `upload_images` WHERE `photo_d` = '".$this->mysqli->real_escape_string($photo_d)."' ";
 
 				$result = $this->mysqli->query($sql);
 			
@@ -178,8 +168,19 @@ public function showLikes($photo_d) {
 		    
 	}
 
-		public function showUserLikes ($photo_id){
-				$sql = "SELECT COUNT(*) FROM photo_liked WHERE `user_id` = ". $_SESSION['user_id'] ." AND `photo_id` = ".$photo_id." 
+		// public function showUserLikes ($photo_id){
+		// 		$sql = "SELECT COUNT(*) FROM photo_liked WHERE `user_id` = ". $_SESSION['user_id'] ." AND `photo_id` = ".$this->mysqli->real_escape_string($photo_id)." 
+		// 		AND `Active` = 1";
+
+		// 	$result2 = $this->mysqli->query($sql);
+		// 	 $likes = $result2->fetch_all(MYSQLI_ASSOC);
+
+		// 	 echo $likes[0]['COUNT(*)']; 
+
+		// }
+
+		public function showUsersLikes ($photo_id){
+				$sql = "SELECT COUNT(*) FROM photo_liked WHERE `photo_id` = ".$this->mysqli->real_escape_string($photo_id)." 
 				AND `Active` = 1";
 
 			$result2 = $this->mysqli->query($sql);
@@ -193,12 +194,17 @@ public function showLikes($photo_d) {
 		$sql = "SELECT Active
 				FROM photo_liked
 				WHERE user_id = ".$_SESSION['user_id']."
-				AND photo_id = ".$photo_id." 
+				AND photo_id = ".$this->mysqli->real_escape_string($photo_id)." 
 			   ";
 							  
 		$result = $this->mysqli->query($sql);
 
-		return $result;
+		if (mysqli_num_rows($result) == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+
 	}
 
 
